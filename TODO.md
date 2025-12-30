@@ -267,21 +267,56 @@
 
 ---
 
-## ⚫ PHASE 7: CHUỖI THỜI GIAN (TIME SERIES)
+## ✅ PHASE 7: CHUỖI THỜI GIAN (TIME SERIES) - HOÀN THÀNH
 
 ### 7.1. Tạo module forecasting
-- [ ] `src/models/forecasting.py`
-  - [ ] Hàm aggregate cancellation rate theo tháng
-  - [ ] Hàm train ARIMA/SARIMA
-  - [ ] Hàm train Prophet (optional)
-  - [ ] Hàm đánh giá MAE, RMSE
+- [x] `src/models/forecasting.py`
+  - [x] Hàm aggregate cancellation rate theo tháng (`prepare_time_series`)
+  - [x] Hàm train ARIMA/SARIMA (`train_arima`, `train_sarima`)
+  - [x] Hàm train Exponential Smoothing (`train_exponential_smoothing`)
+  - [x] Hàm train Prophet (optional) (`train_prophet`)
+  - [x] Hàm đánh giá MAE, RMSE, MAPE (`evaluate_forecast`)
+  - [x] Hàm baseline forecasts (`naive_forecast`, `moving_average_forecast`)
+  - [x] Hàm phân tích time series (`check_stationarity`, `decompose_time_series`)
+  - [x] Hàm visualization (`plot_time_series`, `plot_forecast`, `plot_decomposition`)
 
-### 7.2. Thêm vào Notebook hoặc tạo riêng
-- [ ] Aggregate data theo tháng: cancellation_rate = canceled/total
-- [ ] Visualize time series của cancellation rate
-- [ ] Train model dự báo
-- [ ] Đánh giá MAE/RMSE
-- [ ] Visualize forecast vs actual
+### 7.2. Notebook Time Series Analysis
+- [x] Tạo `notebooks/05_time_series.ipynb`
+- [x] Aggregate data theo tháng: cancellation_rate = canceled/total
+- [x] Visualize time series của cancellation rate
+- [x] Phân tích stationarity (ADF test) - Series is NON-STATIONARY
+- [x] Decomposition: Trend, Seasonal, Residual components
+- [x] ACF/PACF analysis
+- [x] Train-Test split (20 train, 6 test months)
+- [x] Train models:
+  - [x] Baseline: Naive, MA(3), MA(6)
+  - [x] ARIMA(1,1,1), ARIMA(2,1,2)
+  - [x] Exponential Smoothing
+- [x] Đánh giá MAE/RMSE/MAPE
+- [x] Visualize forecast vs actual
+- [x] So sánh tất cả models
+
+### 7.3. Kết quả Time Series
+| Model | MAE | RMSE | MAPE |
+|-------|-----|------|------|
+| **MA(6) (Best)** | **0.0434** | **0.0526** | **10.39%** |
+| MA(3) | 0.0568 | 0.0675 | 13.50% |
+| ARIMA(1,1,1) | 0.0705 | 0.0809 | 16.89% |
+| Naive | 0.0718 | 0.0819 | 17.24% |
+| ARIMA(2,1,2) | 0.0723 | 0.0828 | 17.33% |
+| Exp. Smoothing | 0.0820 | 0.0912 | 19.81% |
+
+### 7.4. Output files
+- [x] `outputs/figures/ts_cancellation_rate.png`
+- [x] `outputs/figures/ts_bookings_cancellations.png`
+- [x] `outputs/figures/ts_decomposition.png`
+- [x] `outputs/figures/ts_acf_pacf.png`
+- [x] `outputs/figures/ts_train_test_split.png`
+- [x] `outputs/figures/ts_model_comparison.png`
+- [x] `outputs/figures/ts_best_forecast.png`
+- [x] `outputs/figures/ts_all_forecasts.png`
+- [x] `outputs/tables/ts_model_comparison.csv`
+- [x] `outputs/tables/ts_summary_report.txt`
 
 ---
 
