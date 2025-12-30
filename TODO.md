@@ -147,14 +147,14 @@
   - [x] Feature cho association rules (`prepare_for_association_rules()`)
   - [x] Thêm nhiều features khác: revenue, booking, room, guest history
 
-### 3.3. Notebook 02_preprocess_feature.ipynb
-- [ ] Tạo notebook `notebooks/02_preprocess_feature.ipynb`
-- [ ] Gọi cleaner để xử lý missing/outliers
-- [ ] Gọi builder để tạo features
-- [ ] Lưu dữ liệu đã xử lý vào `data/processed/`
-- [ ] Thống kê trước-sau tiền xử lý
-- [ ] Train/Test split (80/20 hoặc theo params.yaml)
-- [ ] Xử lý imbalance: SMOTE / class_weight / undersampling
+### 3.3. Notebook 02_preprocess_feature.ipynb ✅
+- [x] Tạo notebook `notebooks/02_preprocess_feature.ipynb`
+- [x] Gọi cleaner để xử lý missing/outliers
+- [x] Gọi builder để tạo features
+- [x] Lưu dữ liệu đã xử lý vào `data/processed/`
+- [x] Thống kê trước-sau tiền xử lý
+- [x] Train/Test split (80/20 hoặc theo params.yaml)
+- [x] Xử lý imbalance: SMOTE / class_weight / undersampling
 
 ---
 

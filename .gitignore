@@ -46,11 +46,12 @@ env/
 .spyproject
 
 # ----- Data Files (Large) -----
-# Uncomment if data is too large for git
+# Raw data - keep in git for reproducibility (small enough)
 # data/raw/*.csv
-# data/raw/*.xlsx
-# data/processed/*.csv
-# data/processed/*.parquet
+
+# Processed data - DO NOT commit (can be regenerated from notebooks)
+data/processed/*.csv
+data/processed/*.parquet
 
 # ----- Model Files -----
 outputs/models/*.pkl
