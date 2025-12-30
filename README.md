@@ -61,7 +61,7 @@ BaiTapLon/
 
 ### 1. Clone repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/NguyenHoangAnh1771040002/Nhom12_BaiTapLon_DataMining.git
 cd BaiTapLon
 ```
 
