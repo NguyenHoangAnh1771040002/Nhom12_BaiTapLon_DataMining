@@ -96,30 +96,30 @@
 - [x] `src/data/__init__.py`
 - [x] `src/data/loader.py` - Hàm đọc dữ liệu, kiểm tra schema
 
-### 2.2. Notebook 01_eda.ipynb
-- [ ] Tạo notebook `notebooks/01_eda.ipynb`
-- [ ] **Thống kê tổng quan:**
-  - [ ] Shape, dtypes, memory usage
-  - [ ] Số lượng missing values mỗi cột
-  - [ ] Thống kê mô tả (describe)
-- [ ] **Data Dictionary:**
-  - [ ] Giải thích ý nghĩa từng cột
-  - [ ] Xác định biến target: `is_canceled`
-  - [ ] Phân loại: numerical vs categorical
-- [ ] **Phân tích phân phối:**
-  - [ ] Biểu đồ 1: Phân phối target (is_canceled) - Kiểm tra imbalance
-  - [ ] Biểu đồ 2: Phân phối lead_time
-  - [ ] Biểu đồ 3: Tỷ lệ huỷ theo hotel type
-  - [ ] Biểu đồ 4: Tỷ lệ huỷ theo tháng/mùa
-  - [ ] Biểu đồ 5: Tỷ lệ huỷ theo market_segment
-  - [ ] Biểu đồ 6: Tỷ lệ huỷ theo country (top 10)
-- [ ] **Phân tích tương quan:**
-  - [ ] Correlation matrix cho numerical features
-  - [ ] Chi-square test cho categorical vs target
-- [ ] **Phát hiện vấn đề:**
-  - [ ] Xác định các cột có DATA LEAKAGE (reservation_status, etc.)
-  - [ ] Xác định outliers
-  - [ ] Xác định các cột cần drop/transform
+### 2.2. Notebook 01_eda.ipynb ✅
+- [x] Tạo notebook `notebooks/01_eda.ipynb`
+- [x] **Thống kê tổng quan:**
+  - [x] Shape, dtypes, memory usage
+  - [x] Số lượng missing values mỗi cột
+  - [x] Thống kê mô tả (describe)
+- [x] **Data Dictionary:**
+  - [x] Giải thích ý nghĩa từng cột
+  - [x] Xác định biến target: `is_canceled`
+  - [x] Phân loại: numerical vs categorical
+- [x] **Phân tích phân phối:**
+  - [x] Biểu đồ 1: Phân phối target (is_canceled) - Kiểm tra imbalance
+  - [x] Biểu đồ 2: Phân phối lead_time
+  - [x] Biểu đồ 3: Tỷ lệ huỷ theo hotel type
+  - [x] Biểu đồ 4: Tỷ lệ huỷ theo tháng/mùa
+  - [x] Biểu đồ 5: Tỷ lệ huỷ theo market_segment
+  - [x] Biểu đồ 6: Tỷ lệ huỷ theo country (top 10)
+- [x] **Phân tích tương quan:**
+  - [x] Correlation matrix cho numerical features
+  - [x] Chi-square test cho categorical vs target
+- [x] **Phát hiện vấn đề:**
+  - [x] Xác định các cột có DATA LEAKAGE (reservation_status, etc.)
+  - [x] Xác định outliers
+  - [x] Xác định các cột cần drop/transform
 
 ---
 
@@ -352,26 +352,6 @@
 - [ ] Update README.md
 - [ ] Final commit và push to GitHub
 - [ ] Export báo cáo PDF vào `outputs/reports/`
-
----
-
-## 📊 TIẾN ĐỘ TỔNG QUAN
-
-| Phase | Mô tả | Trạng thái |
-|-------|-------|------------|
-| 1 | Thiết lập dự án | ✅ Hoàn thành |
-| 2 | EDA | ⬜ Chưa bắt đầu |
-| 3 | Tiền xử lý & Features | ⬜ Chưa bắt đầu |
-| 4 | Data Mining | ⬜ Chưa bắt đầu |
-| 5 | Classification | ⬜ Chưa bắt đầu |
-| 6 | Semi-supervised | ⬜ Chưa bắt đầu |
-| 7 | Time Series | ⬜ Chưa bắt đầu |
-| 8 | Tổng hợp & Báo cáo | ⬜ Chưa bắt đầu |
-| 9 | Pipeline | ⬜ Chưa bắt đầu |
-| 10 | Demo App (Bonus) | ⬜ Chưa bắt đầu |
-| 11 | Báo cáo cuối | ⬜ Chưa bắt đầu |
-
-**Tiến độ: 1/11 phases (9%)**
 
 ---
 

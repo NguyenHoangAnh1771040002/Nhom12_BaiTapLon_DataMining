@@ -1,0 +1,41 @@
+
+# EDA Summary - Hotel Booking Cancellation Prediction
+Generated: 2025-12-30 15:20:39
+
+## Dataset Overview
+- Records: 119,390
+- Features: 32
+- Target: is_canceled (Binary: 0/1)
+- Cancellation Rate: 37.04%
+
+## Data Quality Issues
+1. Missing Values:
+   - company: 94.31% → Drop or create flag
+   - agent: 13.69% → Impute with 0 (no agent)
+   - country: 0.41% → Impute with mode
+   - children: 0.00% (4 rows) → Impute with 0
+
+2. Data Leakage:
+   - MUST DROP: reservation_status, reservation_status_date
+
+3. Outliers:
+   - ADR has extreme values (max > 5000, negative values)
+   - lead_time has values up to 737 days
+
+## Key Insights
+1. Lead Time: Strong positive correlation with cancellation
+2. Deposit Type: Non Refund has lowest cancel rate
+3. Market Segment: Online TA has highest cancel rate
+4. Special Requests: Negative correlation with cancellation
+5. Hotel Type: City Hotel has higher cancel rate than Resort
+
+## Recommended Features
+- lead_time
+- deposit_type
+- market_segment
+- previous_cancellations
+- total_of_special_requests
+- adr
+- customer_type
+- is_repeated_guest
+- Required feature engineering for temporal patterns
