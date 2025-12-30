@@ -199,43 +199,43 @@
 
 ---
 
-## 🔵 PHASE 5: MÔ HÌNH PHÂN LỚP (CLASSIFICATION)
+## 🔵 PHASE 5: MÔ HÌNH PHÂN LỚP (CLASSIFICATION) ✅
 
-### 5.1. Tạo module models
-- [ ] `src/models/__init__.py`
-- [ ] `src/models/supervised.py`
-  - [ ] Hàm train Logistic Regression (baseline 1)
-  - [ ] Hàm train Decision Tree (baseline 2)
-  - [ ] Hàm train Random Forest
-  - [ ] Hàm train XGBoost/LightGBM
-  - [ ] Hàm hyperparameter tuning (GridSearch/RandomSearch)
-  - [ ] Hàm predict và predict_proba
+### 5.1. Tạo module models ✅
+- [x] `src/models/__init__.py`
+- [x] `src/models/supervised.py`
+  - [x] Hàm train Logistic Regression (baseline 1)
+  - [x] Hàm train Decision Tree (baseline 2)
+  - [x] Hàm train Random Forest
+  - [x] Hàm train XGBoost/LightGBM
+  - [x] Hàm hyperparameter tuning (GridSearch/RandomSearch)
+  - [x] Hàm predict và predict_proba
 
-### 5.2. Tạo module evaluation
-- [ ] `src/evaluation/__init__.py`
-- [ ] `src/evaluation/metrics.py`
-  - [ ] Hàm tính Accuracy, Precision, Recall, F1
-  - [ ] Hàm tính PR-AUC, ROC-AUC
-  - [ ] Hàm vẽ Confusion Matrix
-  - [ ] Hàm vẽ ROC Curve, PR Curve
-  - [ ] Hàm vẽ Feature Importance
+### 5.2. Tạo module evaluation ✅
+- [x] `src/evaluation/__init__.py`
+- [x] `src/evaluation/metrics.py`
+  - [x] Hàm tính Accuracy, Precision, Recall, F1
+  - [x] Hàm tính PR-AUC, ROC-AUC
+  - [x] Hàm vẽ Confusion Matrix
+  - [x] Hàm vẽ ROC Curve, PR Curve
+  - [x] Hàm vẽ Feature Importance
 
-### 5.3. Notebook 04_modeling.ipynb
-- [ ] Tạo notebook `notebooks/04_modeling.ipynb`
-- [ ] **Baseline models:**
-  - [ ] Train Logistic Regression
-  - [ ] Train Decision Tree
-- [ ] **Improved models:**
-  - [ ] Train Random Forest với tuning
-  - [ ] Train XGBoost/LightGBM với tuning
-- [ ] **Đánh giá:**
-  - [ ] Bảng so sánh metrics (Accuracy, F1, PR-AUC, ROC-AUC)
-  - [ ] Confusion matrix cho mỗi model
-  - [ ] Feature importance analysis
-  - [ ] Cross-validation (5-fold)
-- [ ] **Kiểm tra leakage:**
-  - [ ] Verify không dùng cột reservation_status
-  - [ ] Verify split đúng (không data leak từ test)
+### 5.3. Notebook 04_modeling.ipynb ✅
+- [x] Tạo notebook `notebooks/04_modeling.ipynb`
+- [x] **Baseline models:**
+  - [x] Train Logistic Regression
+  - [x] Train Decision Tree
+- [x] **Improved models:**
+  - [x] Train Random Forest với tuning
+  - [x] Train XGBoost/LightGBM với tuning
+- [x] **Đánh giá:**
+  - [x] Bảng so sánh metrics (Accuracy, F1, PR-AUC, ROC-AUC)
+  - [x] Confusion matrix cho mỗi model
+  - [x] Feature importance analysis
+  - [x] Cross-validation (5-fold)
+- [x] **Kiểm tra leakage:**
+  - [x] Verify không dùng cột reservation_status
+  - [x] Verify split đúng (không data leak từ test)
 
 ---
 
