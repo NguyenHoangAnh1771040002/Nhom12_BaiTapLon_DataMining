@@ -160,36 +160,42 @@
 
 ## 🟢 PHASE 4: KHAI PHÁ TRI THỨC (DATA MINING)
 
-### 4.1. Luật kết hợp (Association Rules)
-- [ ] `src/mining/__init__.py`
-- [ ] `src/mining/association.py`
-  - [ ] Hàm chuyển đổi data sang dạng transaction
-  - [ ] Hàm chạy Apriori/FP-Growth
-  - [ ] Hàm trích xuất rules với support/confidence/lift
+### 4.1. Luật kết hợp (Association Rules) ✅
+- [x] `src/mining/__init__.py`
+- [x] `src/mining/association.py`
+  - [x] Hàm chuyển đổi data sang dạng transaction (`prepare_transactions()`)
+  - [x] Hàm chạy Apriori/FP-Growth (`run_apriori()`, `run_fpgrowth()`)
+  - [x] Hàm trích xuất rules với support/confidence/lift (`extract_rules()`)
+  - [x] Hàm lọc rules theo consequent (`filter_rules_by_consequent()`)
+  - [x] Hàm so sánh rules theo nhóm (`compare_rules_by_group()`)
+  - [x] Pipeline hoàn chỉnh (`mine_association_rules()`)
+  - [x] Visualization functions (`plot_rules_heatmap()`, `plot_support_confidence_scatter()`)
 
-### 4.2. Phân cụm (Clustering)
-- [ ] `src/mining/clustering.py`
-  - [ ] Hàm chuẩn hoá features cho clustering
-  - [ ] Hàm KMeans với Elbow method
-  - [ ] Hàm DBSCAN
-  - [ ] Hàm Hierarchical Clustering
-  - [ ] Hàm đánh giá: Silhouette Score, Davies-Bouldin Index
-  - [ ] Hàm profiling cụm (cluster interpretation)
+### 4.2. Phân cụm (Clustering) ✅
+- [x] `src/mining/clustering.py`
+  - [x] Hàm chuẩn hoá features cho clustering (`prepare_clustering_data()`)
+  - [x] Hàm KMeans với Elbow method (`run_kmeans()`, `find_optimal_k()`)
+  - [x] Hàm DBSCAN (`run_dbscan()`)
+  - [x] Hàm Hierarchical Clustering (`run_hierarchical()`)
+  - [x] Hàm đánh giá: Silhouette Score, Davies-Bouldin Index (`evaluate_clustering()`)
+  - [x] Hàm profiling cụm (`profile_clusters()`, `identify_high_risk_clusters()`)
+  - [x] Visualization functions (`plot_clusters_2d()`, `plot_cluster_profiles()`, `plot_cancellation_by_cluster()`)
+  - [x] Pipeline hoàn chỉnh (`cluster_bookings()`)
 
-### 4.3. Notebook 03_mining_or_clustering.ipynb
-- [ ] Tạo notebook `notebooks/03_mining_or_clustering.ipynb`
-- [ ] **Luật kết hợp:**
-  - [ ] Tìm rules liên quan đến `is_canceled=1`
-  - [ ] So sánh rules theo mùa (summer vs winter)
-  - [ ] So sánh rules theo quốc gia (top countries)
-  - [ ] Visualize top rules (heatmap, network graph)
-- [ ] **Phân cụm:**
-  - [ ] Chọn features phù hợp (lead_time, total_nights, adr, etc.)
-  - [ ] Tìm số cụm tối ưu (Elbow + Silhouette)
-  - [ ] Chạy KMeans với k tối ưu
-  - [ ] Profiling từng cụm
-  - [ ] Xác định cụm có rủi ro huỷ cao
-  - [ ] Visualize clusters (PCA/t-SNE 2D)
+### 4.3. Notebook 03_mining_clustering.ipynb ✅
+- [x] Tạo notebook `notebooks/03_mining_clustering.ipynb`
+- [x] **Luật kết hợp:**
+  - [x] Tìm rules liên quan đến `is_canceled=1`
+  - [x] So sánh rules theo mùa (summer vs winter)
+  - [x] So sánh rules theo quốc gia (top countries)
+  - [x] Visualize top rules (heatmap, network graph)
+- [x] **Phân cụm:**
+  - [x] Chọn features phù hợp (lead_time, total_nights, adr, etc.)
+  - [x] Tìm số cụm tối ưu (Elbow + Silhouette)
+  - [x] Chạy KMeans với k tối ưu
+  - [x] Profiling từng cụm
+  - [x] Xác định cụm có rủi ro huỷ cao
+  - [x] Visualize clusters (PCA/t-SNE 2D)
 
 ---
 
