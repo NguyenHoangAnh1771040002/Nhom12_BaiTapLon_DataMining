@@ -79,7 +79,11 @@ desktop.ini
 # ----- Logs -----
 *.log
 logs/
+outputs/logs/
 *.out
+
+# ----- EDA Summary (duplicate) -----
+outputs/eda_summary.txt
 
 # ----- Temporary Files -----
 *.tmp
