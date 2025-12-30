@@ -1,0 +1,236 @@
+HƯỚNG DẪN THỰC HIỆN BÀI TẬP LỚN
+HỌC PHẦN DỮ LIỆU LỚN, KHAI PHÁ DỮ LIỆU; KHAI PHÁ DỮ LIỆU -
+HỌC KÌ II NĂM HỌC 2025–2026
+ThS. Lê Thị Thùy Trang
+2025-12-23
+1 Mục tiêu của bài tập lớn
+1.1 Về mặt kiến thức:
+Sinh viên vận dụng kiến thức về khám phá dữ liệu (EDA), tiền xử lý, trích xuất/thiết kế đặc trưng, và các kỹ thuật khai phá
+dữ liệu đã học để xây dựng pipeline khai phá và đánh giá kết quả một cách khoa học.
+Bài tập lớn tập trung vào các nhóm bài toán
+• Khai phá mẫu/tri thức (association patterns)
+• Phân cụm (clustering + diễn giải cụm)
+• Phân lớp (classification) và bán giám sát khi thiếu nhãn
+• Hồi quy/chuỗi thời gian (nếu đề tài thuộc nhóm dự báo)
+1.2 Về mặt kỹ năng:
+• Rèn luyện kỹ năng cốt lõi của một người làm dữ liệu: tiền xử lý, tạo đặc trưng, thử nghiệm–so sánh phương pháp và trình
+bày kết quả theo lập luận khoa học.
+• Rèn luyện kỹ năng làm việc nhóm, nghiên cứu, viết báo cáo và thuyết trình dự án.
+2 Yêu cầu chung
+Sinh viên làm việc theo nhóm từ 2 đến 4 thành viên.
+Đề tài bài tập lớn do giảng viên chỉ định theo danh sách đề bài ở phần 1danh sách đề tài.
+Dataset sử dụng đúng link được cung cấp trong bảng đề tài; nhóm phải ghi rõ nguồn dữ liệu, mô tả cột, ý nghĩa nhãn/target
+(data dictionary).
+Dự án bắt buộc thực hiện theo tinh thần “project repo”: có cấu trúc thư mục rõ ràng, module hoá, chạy lại được
+(reproducible), KHÔNG sử dụng notebook rời rạc.
+Final Project Data mining Lê Thị Thùy Trang
+2.1 Quy trình khai phá dữ liệu tổng quát
+Quy trình tổng quát tuân theo logic “Nguồn dữ liệu → Tiền xử lý → Đặc trưng/biểu diễn → Mô hình → Đánh giá” như
+sau:
+1. Data Source (Nguồn dữ liệu): Dữ liệu dạng bảng/văn bản/ảnh/chuỗi thời gian/đồ thị… tùy đề tài.
+2. Preprocessing (Tiền xử lý): Làm sạch, xử lý thiếu, chuẩn hoá, mã hoá biến phân loại, cân bằng lớp (nếu cần), tạo session
+(log), resample (time series)…
+3. Feature / Representation (Đặc trưng/biểu diễn): TF-IDF/embeddings (text), đặc trưng ảnh, đặc trưng hành vi (RFM), lag
+features (chuỗi thời gian), graph features, vector hoá giỏ hàng…
+4. Mining / Modeling (Khai phá, mô hình hoá)
+• Khai phá tri thức (bắt buộc): pattern mining / clustering / anomaly / rule extraction…
+• Mô hình dự đoán (nếu đề tài có supervised): classification/regression/forecasting; ghi rõ hyperparams, thời gian
+train, thiết lập thực nghiệm
+5. Evaluation and Results (Đánh giá, kết quả): Dùng metric phù hợp, lập bảng/biểu đồ so sánh mô hình, kèm insight và
+khuyến nghị hành động.
+6. Nhánh bổ sung: Bán giám sát (Semi-supervised) – chỉ áp dụng khi đề tài là phân lớp
+• Với đề tài phân lớp, nhóm phải thêm một nhánh thực nghiệm “thiếu nhãn”:
+• Giữ lại p% nhãn (p = 5/10/20), phần còn lại coi là unlabeled
+• So sánh Supervised-only (ít nhãn) vs Semi-supervised (self-training/pseudo-label hoặc label spreading/propagation)
+• Báo cáo learning curve theo % nhãn và phân tích rủi ro pseudo-label
+Figure 1: Pipeline project
+2.2 Nội dung báo cáo (bắt buộc, theo đúng thứ tự)
+Báo cáo phải có đủ các phần như sau:
+1. Đặt vấn đề và phân tích yêu cầu: bối cảnh, mục tiêu, tiêu chí thành công; mô tả dữ liệu và EDA.
+2. Thiết kế giải pháp và quy trình khai phá: mô tả pipeline; tiền xử lý; đặc trưng; lý do chọn kỹ thuật.
+Final Project Data mining Lê Thị Thùy Trang
+3. Phân tích mã nguồn và chức năng: tập trung mô tả kiến trúc repo, các module/class chính (DataCleaner/FeatureBuilder/Miner/Trainer/Evaluator…).
+4. Thử nghiệm và kết quả: metric phù hợp; bảng/biểu đồ so sánh các phương án.
+5. Thảo luận và so sánh: so sánh ưu/nhược; giải thích vì sao phương án A tốt hơn B; nêu thách thức gặp phải.
+6. Tổng kết và hướng phát triển: tóm tắt kết quả và đề xuất cải tiến.
+Ghi chú: Với nhóm có bán giám sát, phần (4)–(5) phải có thêm mục “thiếu nhãn: supervised vs semi-supervised”.
+2.3 Hình thức báo cáo
+Báo cáo viết bằng LaTeX theo template do giảng viên cung cấp hoặc .docx theo mẫu của trường
+Khuyến khích: trình bày nhiều hình/bảng, ít “dán code”; code nằm trong repo.
+2.4 Sử dụng Github trong quá trình làm bài tập lớn
+Sinh viên phải tổ chức project nhóm theo cấu trúc repo rõ ràng để đảm bảo dễ đọc – dễ chạy lại – dễ đánh giá. Repo cần
+tách bạch giữa dữ liệu, notebook báo cáo, mã nguồn (module), cấu hình tham số và kết quả đầu ra.
+2.4.1 Cấu trúc repo mẫu
+DATA_MINING_PROJECT/
+README.md
+requirements.txt # hoặc environment.yml
+.gitignore
+configs/
+params.yaml # tham số: seed, split, paths, hyperparams...
+data/
+raw/ # dữ liệu gốc (không commit nếu quá lớn)
+processed/ # dữ liệu sau tiền xử lý (ưu tiên parquet/csv)
+notebooks/
+01_eda.ipynb
+02_preprocess_feature.ipynb
+03_mining_or_clustering.ipynb
+04_modeling.ipynb
+04b_semi_supervised.ipynb # CHỈ áp dụng cho đề tài có bán giám sát
+05_evaluation_report.ipynb
+src/
+__init__.py
+data/
+__init__.py
+loader.py # đọc dữ liệu, kiểm tra schema
+cleaner.py # xử lý thiếu, outlier, encoding cơ bản
+features/
+__init__.py
+builder.py # feature engineering (RFM, TF-IDF, lag, ...)
+mining/
+Final Project Data mining Lê Thị Thùy Trang
+__init__.py
+association.py # (nếu có) luật kết hợp / pattern
+clustering.py # KMeans/HAC/DBSCAN + profiling
+anomaly.py # (nếu có) outlier/anomaly
+models/
+__init__.py
+supervised.py # train/predict cho classification/regression
+semi_supervised.py # CHỈ áp dụng cho đề tài có bán giám sát
+forecasting.py # (nếu có) time series
+evaluation/
+__init__.py
+metrics.py # accuracy, f1, auc, rmse, mae, ...
+report.py # tổng hợp bảng/biểu đồ kết quả
+visualization/
+__init__.py
+plots.py # hàm vẽ dùng chung
+scripts/
+run_pipeline.py # chạy toàn bộ pipeline (khuyến khích)
+run_papermill.py # (khuyến khích) chạy notebook bằng papermill
+outputs/
+figures/
+tables/
+models/
+reports/
+final_report.pdf
+2.4.2 Quy ước đặt tên luồng pipeline
+Notebook đặt theo thứ tự 01 → 05 để người chấm chạy/đọc theo pipeline.
+src/ chứa toàn bộ logic chính; notebook chỉ gọi hàm/lớp và trình bày kết quả.
+Tất cả đường dẫn và tham số quan trọng đặt trong configs/params.yaml.
+2.4.3 Quy định về dữ liệu và lưu trữ
+Không commit dữ liệu lớn vào GitHub.
+Nếu dataset nặng, nhóm phải cung cấp:
+• link dataset + hướng dẫn tải trong README.md, hoặc
+• script tải dữ liệu trong scripts/ (nếu có thể).
+2.4.4 Yêu cầu tái lập
+Repo được coi là đạt khi người khác có thể:
+1. pip install -r requirements.txt
+2. Cập nhật đường dẫn dữ liệu trong configs/params.yaml
+3. Chạy python scripts/run_papermill.py
+4. Thu được outputs/ và hình/bảng đúng như báo cáo.
+2.5 Điểm thưởng
+Có GUI/Demo app (Streamlit/Gradio/web nhỏ): cộng điểm theo mức hoàn thiện
+3 Yêu cầu đề tài bài tập lớn
+Đề tài Link dataset Luật kết hợp Phân cụm Phân lớp Bán giám sát Hồi quy / Chuỗi thời gian
+12. Dự đoán huỷ
+đặt phòng
+Kaggle: Hotel
+Booking Demand
+dataset
+Rời rạc hoá lead
+time/channel/country.
+Luật kết hợp tìm combo
+thuộc tính liên quan huỷ.
+So sánh theo mùa/quốc
+gia.
+Phân cụm booking theo
+hành vi.
+Chuẩn hoá.
+Profiling cụm rủi ro huỷ
+cao.
+Phân lớp huỷ/không
+huỷ.
+Imbalance.
+PR-AUC/F1.
+Kiểm tra leakage
+(thông tin sau đặt
+phòng).
+Giả lập ít nhãn,
+self-training ngưỡng cao,
+learning curve, phân tích
+pseudo-label sai theo
+lead time dài.
+Không yêu cầu áp dụng hồi
+quy.
+MAE/RMSE.
+Chuỗi thời gian dự báo
+cancellation rate theo tháng.
+
+4 Rubic chấm điểm
+Tiêu chí Điểm tối đa Đánh giá (Đạt / Trung bình / Chưa đạt)
+A. Bài toán + mô tả dữ liệu + data
+dictionary
+1.0 Đạt: Mục tiêu rõ ràng; mô tả nguồn dữ liệu; giải thích
+cột/nhãn/target; có data dictionary; nêu rủi ro như mất cân bằng lớp,
+thiếu dữ liệu, data leakage (nếu có).
+Trung bình: Có mô tả nhưng thiếu 1–2 ý quan trọng (ví dụ thiếu data
+dictionary hoặc chưa nói về leakage/imbalance).
+Chưa đạt: Mơ hồ; thiếu nguồn dữ liệu; không nêu target/label hoặc
+không giải thích dữ liệu.
+B. EDA & tiền xử lý 1.5 Đạt: EDA có ít nhất 3 biểu đồ kèm diễn giải; xử lý
+missing/outlier/duplicate; encoding/scaling hợp lý; có thống kê
+trước–sau hoặc pipeline hoá.
+Trung bình: Có EDA và tiền xử lý nhưng phân tích còn nông; thiếu
+kiểm soát tham số hoặc thiếu thống kê trước–sau.
+Chưa đạt: EDA sơ sài hoặc chỉ chụp hình; tiền xử lý tuỳ tiện hoặc
+sai.
+C. Data Mining core (pattern/cluster/anomaly/rule/graph)
+2.0 Đạt: Có “khai phá tri thức” đúng chất (phân
+cụm/pattern/anomaly/rule/graph); trình bày tham số; có đánh giá
+(silhouette/DBI/coverage/runtime...); rút insight rõ ràng.
+Trung bình: Có mining nhưng hời hợt; thiếu đánh giá hoặc thiếu
+diễn giải kết quả.
+Chưa đạt: Không có phần mining; chỉ huấn luyện mô hình dự đoán.
+D. Mô hình hoá + baseline so sánh
+(>= 2 baseline)
+2.0 Đạt: Có ít nhất 2 baseline và 1 mô hình cải tiến; giải thích lựa chọn;
+có so sánh rõ ràng.
+Trung bình: Có baseline nhưng chưa rõ vai trò/thiết lập; thiếu so
+sánh hoặc mô hình cải tiến chưa thuyết phục.
+Chưa đạt: Chỉ 1 mô hình hoặc không có so sánh baseline.
+E. Thiết kế thực nghiệm + metric
+đúng
+1.0 Đạt: Split/CV hợp lý; đặt seed; tránh leakage; chọn metric phù hợp
+(F1/PR-AUC/ROC-AUC; RMSE/MAE/sMAPE; silhouette/DBI...).
+Trung bình: Có thực nghiệm nhưng thiếu kiểm soát (seed/leakage);
+metric đúng nhưng giải thích chưa rõ.
+Chưa đạt: Thiết kế thực nghiệm sai; metric không phù hợp hoặc
+không nêu rõ.
+F. Bán giám sát hoặc nhánh thay
+thế tương đương
+1.0 Đạt: Nếu đề tài phân lớp: có kịch bản thiếu nhãn (10–30% labeled),
+so sánh supervised-only vs semi-supervised (self-training/label
+spreading), có learning curve theo % nhãn và phân tích pseudo-label
+sai.
+Trung bình: Có triển khai nhưng thiếu một phần (thiếu learning
+curve/thiếu phân tích lỗi/thiếu so sánh).
+Chưa đạt: Không thực hiện semi-supervised (khi bắt buộc) hoặc
+không có nhánh thay thế (khi không áp dụng).
+G. Đánh giá, phân tích lỗi & insight
+hành động
+1.5 Đạt: Có phân tích lỗi (confusion matrix/residual); nêu dạng sai phổ
+biến; có ít nhất 5 insight “có hành động” (actionable) gắn với kết
+quả.
+Trung bình: Có insight nhưng chung chung; phân tích lỗi còn nông.
+Chưa đạt: Không phân tích lỗi; insight mơ hồ hoặc không có khuyến
+nghị.
+H. Repo GitHub chuẩn + chạy lại
+được (reproducible)
+1.0 Đạt: Repo đúng cấu trúc; có README, requirements/environment;
+có configs/outputs; chạy lại tạo ra kết quả; notebook “sạch” (gọi
+code từ src).
+Trung bình: Repo tương đối ổn nhưng thiếu 1–2 phần (ví dụ thiếu
+script chạy pipeline hoặc thiếu hướng dẫn); vẫn còn nhiều code
+trong notebook.
+Chưa đạt: Repo lộn xộn; thiếu hướng dẫn; không chạy lại được.
+Table 2: Thang đánh giá đề tài bài tập lớn

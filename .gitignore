@@ -1,0 +1,105 @@
+# ===========================================
+# GITIGNORE - Hotel Booking Project
+# ===========================================
+
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ----- Virtual Environment -----
+venv/
+ENV/
+env/
+.venv/
+.env
+
+# ----- Jupyter Notebook -----
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# ----- IDE -----
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.spyderproject
+.spyproject
+
+# ----- Data Files (Large) -----
+# Uncomment if data is too large for git
+# data/raw/*.csv
+# data/raw/*.xlsx
+# data/processed/*.csv
+# data/processed/*.parquet
+
+# ----- Model Files -----
+outputs/models/*.pkl
+outputs/models/*.joblib
+outputs/models/*.h5
+outputs/models/*.pt
+*.model
+
+# ----- Outputs (Optional) -----
+# Uncomment if you don't want to track outputs
+# outputs/figures/*
+# outputs/tables/*
+# outputs/reports/*.pdf
+
+# ----- OS Generated -----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ----- Logs -----
+*.log
+logs/
+*.out
+
+# ----- Temporary Files -----
+*.tmp
+*.temp
+*.bak
+*.cache
+
+# ----- Secrets -----
+.env
+.env.local
+secrets.yaml
+credentials.json
+
+# ----- Kaggle -----
+kaggle.json
+
+# ----- Large Files -----
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ----- Keep empty directories -----
+!.gitkeep

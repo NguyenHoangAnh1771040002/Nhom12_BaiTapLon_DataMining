@@ -1,0 +1,228 @@
+# ===========================================
+# CONFIGURATION PARAMETERS
+# Hotel Booking Cancellation Prediction
+# ===========================================
+
+# ----- Project Info -----
+project:
+  name: "Hotel Booking Cancellation Prediction"
+  version: "1.0.0"
+  author: "Team Name"
+
+# ----- Paths -----
+paths:
+  data_raw: "data/raw/hotel_bookings.csv"
+  data_processed: "data/processed/"
+  outputs_figures: "outputs/figures/"
+  outputs_tables: "outputs/tables/"
+  outputs_models: "outputs/models/"
+  outputs_reports: "outputs/reports/"
+
+# ----- Random Seed -----
+seed: 42
+
+# ----- Data Split -----
+split:
+  test_size: 0.2
+  val_size: 0.1  # From training set
+  stratify: true
+
+# ----- Target Column -----
+target: "is_canceled"
+
+# ----- Columns to Drop (Data Leakage) -----
+leakage_columns:
+  - "reservation_status"
+  - "reservation_status_date"
+
+# ----- Categorical Columns -----
+categorical_columns:
+  - "hotel"
+  - "arrival_date_month"
+  - "meal"
+  - "country"
+  - "market_segment"
+  - "distribution_channel"
+  - "reserved_room_type"
+  - "assigned_room_type"
+  - "deposit_type"
+  - "customer_type"
+
+# ----- Numerical Columns -----
+numerical_columns:
+  - "lead_time"
+  - "arrival_date_year"
+  - "arrival_date_week_number"
+  - "arrival_date_day_of_month"
+  - "stays_in_weekend_nights"
+  - "stays_in_week_nights"
+  - "adults"
+  - "children"
+  - "babies"
+  - "previous_cancellations"
+  - "previous_bookings_not_canceled"
+  - "booking_changes"
+  - "days_in_waiting_list"
+  - "adr"
+  - "required_car_parking_spaces"
+  - "total_of_special_requests"
+
+# ----- Feature Engineering -----
+features:
+  # Lead time bins
+  lead_time_bins:
+    - 0
+    - 7
+    - 30
+    - 90
+    - 180
+    - 365
+    - 1000
+  lead_time_labels:
+    - "0-7days"
+    - "7-30days"
+    - "30-90days"
+    - "90-180days"
+    - "180-365days"
+    - "365+days"
+  
+  # Top countries to keep (others -> "Other")
+  top_n_countries: 10
+
+# ----- Preprocessing -----
+preprocessing:
+  # Missing value strategy: "mean", "median", "mode", "drop"
+  numerical_missing: "median"
+  categorical_missing: "mode"
+  
+  # Outlier handling
+  outlier_method: "iqr"  # "iqr" or "zscore"
+  outlier_threshold: 1.5  # For IQR: 1.5, For zscore: 3
+  
+  # Scaling: "standard", "minmax", "robust"
+  scaling_method: "standard"
+  
+  # Encoding: "onehot", "label", "target"
+  encoding_method: "onehot"
+
+# ----- Imbalanced Data -----
+imbalance:
+  method: "smote"  # "smote", "adasyn", "random_over", "random_under", "class_weight"
+  sampling_strategy: "auto"
+
+# ----- Association Rules -----
+association:
+  min_support: 0.01
+  min_confidence: 0.5
+  min_lift: 1.0
+  max_length: 4
+
+# ----- Clustering -----
+clustering:
+  algorithms:
+    - "kmeans"
+    - "dbscan"
+    - "hierarchical"
+  kmeans:
+    n_clusters_range: [2, 10]
+    max_iter: 300
+  dbscan:
+    eps: 0.5
+    min_samples: 5
+  hierarchical:
+    n_clusters: 5
+    linkage: "ward"
+
+# ----- Classification Models -----
+models:
+  # Logistic Regression (Baseline 1)
+  logistic_regression:
+    max_iter: 1000
+    solver: "lbfgs"
+    class_weight: "balanced"
+  
+  # Decision Tree (Baseline 2)
+  decision_tree:
+    max_depth: 10
+    min_samples_split: 5
+    class_weight: "balanced"
+  
+  # Random Forest
+  random_forest:
+    n_estimators: 100
+    max_depth: 15
+    min_samples_split: 5
+    class_weight: "balanced"
+    n_jobs: -1
+  
+  # XGBoost
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+  
+  # LightGBM
+  lightgbm:
+    n_estimators: 100
+    max_depth: -1
+    learning_rate: 0.1
+    num_leaves: 31
+
+# ----- Hyperparameter Tuning -----
+tuning:
+  method: "random"  # "grid" or "random"
+  cv_folds: 5
+  n_iter: 50  # For random search
+  scoring: "f1"
+
+# ----- Semi-Supervised Learning -----
+semi_supervised:
+  labeled_percentages:
+    - 0.05
+    - 0.10
+    - 0.20
+  
+  self_training:
+    threshold: 0.95
+    max_iter: 10
+  
+  label_spreading:
+    kernel: "rbf"
+    gamma: 20
+    max_iter: 1000
+
+# ----- Time Series -----
+time_series:
+  frequency: "M"  # Monthly
+  forecast_periods: 6
+  
+  arima:
+    order: [1, 1, 1]
+    seasonal_order: [1, 1, 1, 12]
+
+# ----- Evaluation Metrics -----
+evaluation:
+  classification:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+    - "roc_auc"
+    - "pr_auc"
+  
+  clustering:
+    - "silhouette"
+    - "davies_bouldin"
+    - "calinski_harabasz"
+  
+  time_series:
+    - "mae"
+    - "rmse"
+    - "mape"
+
+# ----- Cross Validation -----
+cross_validation:
+  n_splits: 5
+  shuffle: true
