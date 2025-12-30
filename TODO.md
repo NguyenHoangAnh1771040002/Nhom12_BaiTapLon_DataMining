@@ -2,8 +2,6 @@
 
 > **Đề tài:** Dự đoán huỷ đặt phòng khách sạn (Hotel Booking Cancellation Prediction)  
 > **Dataset:** [Hotel Booking Demand - Kaggle](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand)  
-> **Ngày tạo:** 30/12/2025
-
 ---
 
 ## 🔴 PHASE 1: THIẾT LẬP DỰ ÁN
@@ -343,5 +341,3 @@
    - Docstring cho mỗi function
 
 ---
-
-*Cập nhật lần cuối: 30/12/2025*

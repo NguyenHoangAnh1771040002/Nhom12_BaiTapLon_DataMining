@@ -66,10 +66,18 @@ cd BaiTapLon
 ```
 
 ### 2. Tạo virtual environment (khuyến nghị)
+
+**Cách 1: Sử dụng venv (Python thuần)**
 ```bash
 python -m venv venv
 venv\Scripts\activate  # Windows
 # source venv/bin/activate  # Linux/Mac
+```
+
+**Cách 2: Sử dụng Anaconda/Miniconda**
+```bash
+conda create -n hotel-booking python=3.10 -y
+conda activate hotel-booking
 ```
 
 ### 3. Cài đặt thư viện
@@ -112,16 +120,15 @@ python scripts/run_pipeline.py
 
 ## 👥 Thành viên nhóm
 
-| STT | Họ tên | MSSV | Vai trò |
-|-----|--------|------|---------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
+| STT | Họ tên | MSSV |
+|-----|--------|------|
+| 1 |Nguyễn Hoàng Anh |1771040002 |
+| 2 |Nguyễn Trung Thành |1771040022 |
+| 3 |Trần Việt Vinh |1771040030 |
+| 4 |Nguyễn Minh Phượng |1677030156 |
 
 ## 📝 License
 
 Dự án này được thực hiện cho mục đích học tập.
 
 ---
-*Cập nhật lần cuối: 30/12/2025*
