@@ -455,13 +455,46 @@ python scripts/run_papermill.py --notebook 01
 
 ---
 
-## 🌟 PHASE 10: ĐIỂM THƯỞNG (OPTIONAL)
+## ✅ PHASE 10: ĐIỂM THƯỞNG - DEMO APP - HOÀN THÀNH!
 
-### 10.1. Demo App
-- [ ] Tạo `app/` hoặc `demo/` folder
-- [ ] Streamlit app để predict cancellation
-- [ ] Input: Thông tin booking
-- [ ] Output: Xác suất huỷ + giải thích
+### 10.1. Demo App ✅
+- [x] Tạo `app/` folder với cấu trúc module
+- [x] `app/__init__.py` - Module init
+- [x] `app/streamlit_app.py` - Streamlit demo app
+  - [x] Input form: Thông tin khách sạn, khách hàng, đặt phòng
+  - [x] Load model Random Forest (Tuned)
+  - [x] Dự đoán xác suất huỷ với color-coded risk level
+  - [x] Hiển thị các yếu tố ảnh hưởng chính
+  - [x] Khuyến nghị hành động cho khách sạn
+- [x] `app/README.md` - Hướng dẫn sử dụng app
+
+### 10.2. App Features
+- **Input Form**: 3 cột với các trường thông tin booking
+  - Thông tin khách sạn: Hotel type, tháng đến, lead time, số đêm
+  - Thông tin khách: Số người, khách quen, loại khách hàng, quốc gia
+  - Thông tin đặt phòng: Phân khúc, đặt cọc, meal, phòng, giá, yêu cầu đặc biệt
+- **Output**:
+  - Xác suất huỷ (%) với màu theo mức rủi ro
+  - Risk Level: LOW/MEDIUM/HIGH với icons
+  - Key Factors: Phân tích các yếu tố ảnh hưởng
+  - Recommendations: Khuyến nghị cho khách sạn
+  - Booking Summary: Tóm tắt thông tin đặt phòng
+
+### 10.3. Run App
+```bash
+# Activate environment
+conda activate lab
+
+# Run Streamlit app
+streamlit run app/streamlit_app.py
+
+# App available at: http://localhost:8501
+```
+
+### 10.4. Output Files
+- [x] `app/__init__.py`
+- [x] `app/streamlit_app.py`
+- [x] `app/README.md`
 
 ---
 
