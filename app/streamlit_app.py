@@ -382,148 +382,149 @@ def main():
     # Nội dung chính
     st.markdown("---")
     
-    # Form nhập liệu
+    # Form nhập liệu - Sử dụng st.form để tránh rerun mỗi khi thay đổi giá trị
     st.header("📝 Nhập Thông Tin Đặt Phòng")
     
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.subheader("🏨 Thông Tin Khách Sạn")
+    with st.form(key="booking_form"):
+        col1, col2, col3 = st.columns(3)
         
-        hotel = st.selectbox(
-            "Loại khách sạn",
-            options=stats.get('hotels', ['City Hotel', 'Resort Hotel']),
-            help="Khách sạn thành phố hoặc Resort"
-        )
+        with col1:
+            st.subheader("🏨 Thông Tin Khách Sạn")
+            
+            hotel = st.selectbox(
+                "Loại khách sạn",
+                options=stats.get('hotels', ['City Hotel', 'Resort Hotel']),
+                help="Khách sạn thành phố hoặc Resort"
+            )
+            
+            arrival_month = st.selectbox(
+                "Tháng đến",
+                options=['January', 'February', 'March', 'April', 'May', 'June',
+                        'July', 'August', 'September', 'October', 'November', 'December']
+            )
+            
+            lead_time = st.slider(
+                "Thời gian đặt trước (ngày)",
+                min_value=0,
+                max_value=500,
+                value=50,
+                help="Số ngày từ khi đặt đến ngày nhận phòng"
+            )
+            
+            stays_weekend = st.number_input(
+                "Số đêm cuối tuần",
+                min_value=0,
+                max_value=10,
+                value=1
+            )
+            
+            stays_week = st.number_input(
+                "Số đêm trong tuần",
+                min_value=0,
+                max_value=20,
+                value=2
+            )
         
-        arrival_month = st.selectbox(
-            "Tháng đến",
-            options=['January', 'February', 'March', 'April', 'May', 'June',
-                    'July', 'August', 'September', 'October', 'November', 'December']
-        )
+        with col2:
+            st.subheader("👥 Thông Tin Khách Hàng")
+            
+            adults = st.number_input(
+                "Số người lớn",
+                min_value=1,
+                max_value=10,
+                value=2
+            )
+            
+            children = st.number_input(
+                "Số trẻ em",
+                min_value=0,
+                max_value=10,
+                value=0
+            )
+            
+            babies = st.number_input(
+                "Số em bé",
+                min_value=0,
+                max_value=5,
+                value=0
+            )
+            
+            is_repeated_guest = st.checkbox("Khách quen (đã đặt trước đây)")
+            
+            customer_type = st.selectbox(
+                "Loại khách hàng",
+                options=stats.get('customer_types', ['Transient', 'Contract', 'Transient-Party', 'Group'])
+            )
+            
+            country = st.selectbox(
+                "Quốc gia",
+                options=['PRT', 'GBR', 'FRA', 'ESP', 'DEU', 'ITA', 'IRL', 'BEL', 'BRA', 'NLD', 'USA', 'Khác'],
+                index=0
+            )
         
-        lead_time = st.slider(
-            "Thời gian đặt trước (ngày)",
-            min_value=0,
-            max_value=500,
-            value=50,
-            help="Số ngày từ khi đặt đến ngày nhận phòng"
-        )
+        with col3:
+            st.subheader("💳 Thông Tin Đặt Phòng")
+            
+            market_segment = st.selectbox(
+                "Phân khúc thị trường",
+                options=stats.get('market_segments', ['Online TA', 'Offline TA/TO', 'Direct', 'Corporate', 'Groups'])
+            )
+            
+            deposit_type = st.selectbox(
+                "Loại đặt cọc",
+                options=stats.get('deposit_types', ['No Deposit', 'Non Refund', 'Refundable']),
+                help="Không đặt cọc = rủi ro cao hơn"
+            )
+            
+            meal = st.selectbox(
+                "Loại bữa ăn",
+                options=stats.get('meal_types', ['BB', 'HB', 'FB', 'SC', 'Undefined'])
+            )
+            
+            reserved_room_type = st.selectbox(
+                "Loại phòng đặt",
+                options=stats.get('room_types', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'])
+            )
+            
+            assigned_room_type = st.selectbox(
+                "Loại phòng được xếp",
+                options=stats.get('room_types', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']),
+                index=0
+            )
+            
+            adr = st.slider(
+                "Giá phòng/đêm (€)",
+                min_value=0.0,
+                max_value=500.0,
+                value=100.0,
+                step=5.0
+            )
+            
+            special_requests = st.number_input(
+                "Số yêu cầu đặc biệt",
+                min_value=0,
+                max_value=5,
+                value=0,
+                help="Nhiều yêu cầu = ít khả năng huỷ"
+            )
+            
+            booking_changes = st.number_input(
+                "Số lần thay đổi đặt phòng",
+                min_value=0,
+                max_value=10,
+                value=0
+            )
         
-        stays_weekend = st.number_input(
-            "Số đêm cuối tuần",
-            min_value=0,
-            max_value=10,
-            value=1
-        )
+        st.markdown("---")
         
-        stays_week = st.number_input(
-            "Số đêm trong tuần",
-            min_value=0,
-            max_value=20,
-            value=2
-        )
-    
-    with col2:
-        st.subheader("👥 Thông Tin Khách Hàng")
-        
-        adults = st.number_input(
-            "Số người lớn",
-            min_value=1,
-            max_value=10,
-            value=2
-        )
-        
-        children = st.number_input(
-            "Số trẻ em",
-            min_value=0,
-            max_value=10,
-            value=0
-        )
-        
-        babies = st.number_input(
-            "Số em bé",
-            min_value=0,
-            max_value=5,
-            value=0
-        )
-        
-        is_repeated_guest = st.checkbox("Khách quen (đã đặt trước đây)")
-        
-        customer_type = st.selectbox(
-            "Loại khách hàng",
-            options=stats.get('customer_types', ['Transient', 'Contract', 'Transient-Party', 'Group'])
-        )
-        
-        country = st.selectbox(
-            "Quốc gia",
-            options=['PRT', 'GBR', 'FRA', 'ESP', 'DEU', 'ITA', 'IRL', 'BEL', 'BRA', 'NLD', 'USA', 'Khác'],
-            index=0
-        )
-    
-    with col3:
-        st.subheader("💳 Thông Tin Đặt Phòng")
-        
-        market_segment = st.selectbox(
-            "Phân khúc thị trường",
-            options=stats.get('market_segments', ['Online TA', 'Offline TA/TO', 'Direct', 'Corporate', 'Groups'])
-        )
-        
-        deposit_type = st.selectbox(
-            "Loại đặt cọc",
-            options=stats.get('deposit_types', ['No Deposit', 'Non Refund', 'Refundable']),
-            help="Không đặt cọc = rủi ro cao hơn"
-        )
-        
-        meal = st.selectbox(
-            "Loại bữa ăn",
-            options=stats.get('meal_types', ['BB', 'HB', 'FB', 'SC', 'Undefined'])
-        )
-        
-        reserved_room_type = st.selectbox(
-            "Loại phòng đặt",
-            options=stats.get('room_types', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'])
-        )
-        
-        assigned_room_type = st.selectbox(
-            "Loại phòng được xếp",
-            options=stats.get('room_types', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']),
-            index=0
-        )
-        
-        adr = st.slider(
-            "Giá phòng/đêm (€)",
-            min_value=0.0,
-            max_value=500.0,
-            value=100.0,
-            step=5.0
-        )
-        
-        special_requests = st.number_input(
-            "Số yêu cầu đặc biệt",
-            min_value=0,
-            max_value=5,
-            value=0,
-            help="Nhiều yêu cầu = ít khả năng huỷ"
-        )
-        
-        booking_changes = st.number_input(
-            "Số lần thay đổi đặt phòng",
-            min_value=0,
-            max_value=10,
-            value=0
-        )
-    
-    st.markdown("---")
-    
-    # Nút dự đoán
-    col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
-    with col_btn2:
-        predict_button = st.button(
-            "🔮 DỰ ĐOÁN KHẢ NĂNG HUỶ",
-            use_container_width=True,
-            type="primary"
-        )
+        # Nút dự đoán trong form
+        col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
+        with col_btn2:
+            predict_button = st.form_submit_button(
+                "🔮 DỰ ĐOÁN KHẢ NĂNG HUỶ",
+                use_container_width=True,
+                type="primary"
+            )
     
     if predict_button:
         # Chuẩn bị dữ liệu đầu vào
