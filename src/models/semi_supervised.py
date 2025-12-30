@@ -1,21 +1,19 @@
 """
-Semi-Supervised Learning Models for Hotel Booking Cancellation Prediction
-=========================================================================
+Mô Hình Học Bán Giám Sát - Dự Đoán Huỷ Đặt Phòng
+=====================================================
+(Semi-Supervised Learning for Hotel Booking Cancellation Prediction)
 
-This module provides semi-supervised learning methods for scenarios where
-only a small portion of data is labeled.
+Module cung cấp các phương pháp học bán giám sát cho kịch bản
+chỉ có một phần nhỏ dữ liệu được gán nhãn.
 
-Methods included:
-- Self-Training: Iteratively label unlabeled data using confident predictions
-- Label Propagation: Graph-based propagation of labels
-- Label Spreading: Soft version of label propagation
+Các phương pháp:
+- Self-Training: Lặp lại gán nhãn dữ liệu chưa gán bằng dự đoán tin cậy
+- Label Propagation: Lan truyền nhãn dựa trên đồ thị
+- Label Spreading: Phiên bản mềm của Label Propagation
 
-Use cases:
-- When labeling is expensive and only partial labels are available
-- To leverage unlabeled data for improved model performance
-
-Author: Nhom12
-Date: 2024
+Trường hợp sử dụng:
+- Khi việc gán nhãn tốn kém và chỉ có một phần nhãn
+- Tận dụng dữ liệu chưa gán nhãn để cải thiện mô hình
 """
 
 import numpy as np

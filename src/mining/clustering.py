@@ -1,23 +1,21 @@
 """
-Clustering Module
-=================
+Module Phân Cụm (Clustering)
+============================
 
-Clustering algorithms for hotel booking customer segmentation.
+Các thuật toán phân cụm để phân nhóm khách hàng đặt phòng.
 
-Functions:
-----------
-- prepare_clustering_data: Prepare and scale features for clustering
-- find_optimal_k: Find optimal number of clusters using Elbow and Silhouette
-- run_kmeans: Run KMeans clustering
-- run_dbscan: Run DBSCAN clustering
-- run_hierarchical: Run Hierarchical/Agglomerative clustering
-- evaluate_clustering: Evaluate clustering results
-- profile_clusters: Profile and interpret clusters
-- visualize_clusters: Visualize clusters using PCA/t-SNE
+Các hàm chính:
+--------------
+- prepare_clustering_data: Chuẩn bị dữ liệu cho phân cụm
+- find_optimal_k: Tìm số cụm tối ưu (Elbow + Silhouette)
+- run_kmeans: Chạy thuật toán KMeans
+- run_dbscan: Chạy thuật toán DBSCAN
+- run_hierarchical: Chạy phân cụm phân cấp
+- evaluate_clustering: Đánh giá kết quả phân cụm
+- profile_clusters: Phân tích đặc điểm từng cụm
+- visualize_clusters: Trực quan hóa cụm (PCA/t-SNE)
 
-Requirements:
--------------
-- scikit-learn: pip install scikit-learn
+Yêu cầu: scikit-learn (pip install scikit-learn)
 """
 
 import pandas as pd

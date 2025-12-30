@@ -1,18 +1,16 @@
 """
-Supervised Learning Models for Hotel Booking Cancellation Prediction
-====================================================================
+Mô Hình Học Có Giám Sát - Dự Đoán Huỷ Đặt Phòng
+=================================================
+(Supervised Learning Models for Hotel Booking Cancellation Prediction)
 
-This module provides classification models for predicting hotel booking cancellations.
+Module cung cấp các mô hình phân loại dự đoán huỷ đặt phòng khách sạn.
 
-Models included:
-- Logistic Regression (baseline)
-- Decision Tree (baseline)
-- Random Forest
-- XGBoost
-- LightGBM
-
-Author: Nhom12
-Date: 2024
+Các mô hình:
+- Logistic Regression (Hồi quy Logistic - baseline)
+- Decision Tree (Cây quyết định - baseline)
+- Random Forest (Rừng ngẫu nhiên)
+- XGBoost (Extreme Gradient Boosting)
+- LightGBM (Light Gradient Boosting Machine)
 """
 
 import numpy as np

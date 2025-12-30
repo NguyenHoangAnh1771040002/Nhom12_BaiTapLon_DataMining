@@ -1,18 +1,40 @@
-numpy==1.24.3
-pandas==2.0.3
-scipy>=1.10.0
-matplotlib>=3.7.0
-seaborn>=0.12.0
-plotly>=5.14.0
-scikit-learn>=1.2.0
-imbalanced-learn>=0.10.0
-xgboost>=1.7.0
-lightgbm>=3.3.0
-mlxtend>=0.22.0
-statsmodels>=0.14.0
-pyyaml>=6.0
-jupyter>=1.0.0
-notebook>=7.0.0
-ipywidgets>=8.0.0
-tqdm>=4.65.0
-joblib>=1.2.0
+# ===========================================
+# YÊU CẦU THƯ VIỆN (Requirements)
+# Dự Đoán Huỷ Đặt Phòng Khách Sạn
+# Hotel Booking Cancellation Prediction
+# ===========================================
+
+# ----- Thư viện cơ bản (Core Libraries) -----
+numpy==1.24.3           # Tính toán số học (Numerical computing)
+pandas==2.0.3           # Xử lý dữ liệu (Data manipulation)
+scipy>=1.10.0           # Thư viện khoa học (Scientific computing)
+
+# ----- Trực quan hóa (Visualization) -----
+matplotlib>=3.7.0       # Vẽ đồ thị cơ bản (Basic plotting)
+seaborn>=0.12.0         # Vẽ đồ thị thống kê (Statistical visualization)
+plotly>=5.14.0          # Đồ thị tương tác (Interactive plots)
+
+# ----- Machine Learning -----
+scikit-learn>=1.2.0     # Thư viện ML chính (Main ML library)
+imbalanced-learn>=0.10.0 # Xử lý dữ liệu mất cân bằng (Imbalanced data)
+xgboost>=1.7.0          # Gradient Boosting
+lightgbm>=3.3.0         # Light Gradient Boosting
+
+# ----- Khai phá dữ liệu (Data Mining) -----
+mlxtend>=0.22.0         # Luật kết hợp - Apriori, FP-Growth (Association rules)
+
+# ----- Chuỗi thời gian (Time Series) -----
+statsmodels>=0.14.0     # ARIMA, Exponential Smoothing
+
+# ----- Cấu hình & Tiện ích (Config & Utilities) -----
+pyyaml>=6.0             # Đọc file YAML (YAML parser)
+tqdm>=4.65.0            # Thanh tiến trình (Progress bars)
+joblib>=1.2.0           # Lưu/tải mô hình (Model persistence)
+
+# ----- Jupyter Notebook -----
+jupyter>=1.0.0          # Jupyter environment
+notebook>=7.0.0         # Notebook interface
+ipywidgets>=8.0.0       # Widget tương tác (Interactive widgets)
+
+# ----- Ứng dụng Demo (Demo App) -----
+streamlit>=1.24.0       # Web app framework

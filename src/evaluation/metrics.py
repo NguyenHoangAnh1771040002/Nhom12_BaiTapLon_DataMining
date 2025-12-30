@@ -1,25 +1,24 @@
 """
-Evaluation Metrics for Classification Models
-============================================
+Module Chỉ Số Đánh Giá Mô Hình Phân Loại
+==========================================
+(Evaluation Metrics for Classification Models)
 
-This module provides comprehensive evaluation metrics and visualization
-functions for classification model performance.
+Module cung cấp các chỉ số đánh giá và trực quan hóa
+hiệu suất mô hình phân loại.
 
-Metrics included:
-- Accuracy, Precision, Recall, F1
+Các chỉ số:
+- Accuracy (Độ chính xác), Precision (Độ chính xác dương)
+- Recall (Độ nhạy), F1-Score
 - ROC-AUC, PR-AUC
-- Confusion Matrix
-- Classification Report
+- Confusion Matrix (Ma trận nhầm lẫn)
+- Classification Report (Báo cáo phân loại)
 
-Visualizations:
-- Confusion Matrix heatmap
-- ROC Curve
-- Precision-Recall Curve
-- Feature Importance plot
-- Model Comparison chart
-
-Author: Nhom12
-Date: 2024
+Trực quan hóa:
+- Biểu đồ Confusion Matrix
+- Đường cong ROC
+- Đường cong Precision-Recall
+- Biểu đồ Feature Importance
+- Biểu đồ so sánh mô hình
 """
 
 import numpy as np

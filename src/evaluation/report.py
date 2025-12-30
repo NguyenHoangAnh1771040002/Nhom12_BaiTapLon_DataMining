@@ -1,19 +1,17 @@
 """
-Evaluation Module - Report Generation
-======================================
+Module Tạo Báo Cáo (Đánh Giá)
+==============================
+(Evaluation Module - Report Generation)
 
-Comprehensive reporting functions for data mining project.
+Các hàm tạo báo cáo toàn diện cho dự án khai phá dữ liệu.
 
-Functions:
-----------
-- Summary tables generation
-- Model comparison reports
-- Export figures and tables
-- Generate markdown/LaTeX reports
-- Business insights extraction
-
-Author: Nhom12
-Date: 2024
+Các hàm chính:
+--------------
+- Tạo bảng tổng hợp (Summary tables)
+- Báo cáo so sánh mô hình
+- Xuất biểu đồ và bảng
+- Tạo báo cáo Markdown/LaTeX
+- Trích xuất business insights
 """
 
 import numpy as np

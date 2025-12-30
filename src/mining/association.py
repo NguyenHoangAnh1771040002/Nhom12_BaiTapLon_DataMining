@@ -1,22 +1,20 @@
 """
-Association Rules Mining Module
-===============================
+Module Khai Phá Luật Kết Hợp (Association Rules Mining)
+======================================================
 
-Utilities for mining association rules from hotel booking data.
+Các hàm khai phá luật kết hợp từ dữ liệu đặt phòng khách sạn.
 
-Functions:
-----------
-- prepare_transactions: Convert dataframe to transaction format
-- run_apriori: Run Apriori algorithm
-- run_fpgrowth: Run FP-Growth algorithm
-- extract_rules: Extract association rules with metrics
-- filter_rules_by_consequent: Filter rules by consequent item
-- compare_rules_by_group: Compare rules across different groups
-- visualize_rules: Visualize association rules
+Các hàm chính:
+--------------
+- prepare_transactions: Chuyển dataframe sang định dạng giao dịch
+- run_apriori: Chạy thuật toán Apriori
+- run_fpgrowth: Chạy thuật toán FP-Growth
+- extract_rules: Trích xuất luật với các chỉ số đánh giá
+- filter_rules_by_consequent: Lọc luật theo vế phải
+- compare_rules_by_group: So sánh luật giữa các nhóm
+- visualize_rules: Trực quan hóa luật kết hợp
 
-Requirements:
--------------
-- mlxtend: pip install mlxtend
+Yêu cầu: mlxtend (pip install mlxtend)
 """
 
 import pandas as pd

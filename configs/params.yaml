@@ -1,75 +1,76 @@
 # ===========================================
-# CONFIGURATION PARAMETERS
+# THAM SỐ CẤU HÌNH (Configuration Parameters)
+# Dự Đoán Huỷ Đặt Phòng Khách Sạn
 # Hotel Booking Cancellation Prediction
 # ===========================================
 
-# ----- Project Info -----
+# ----- Thông tin dự án (Project Info) -----
 project:
-  name: "Hotel Booking Cancellation Prediction"
+  name: "Dự Đoán Huỷ Đặt Phòng Khách Sạn"  # Hotel Booking Cancellation Prediction
   version: "1.0.0"
-  author: "Team Name"
+  author: "Nhóm 12"
 
-# ----- Paths -----
+# ----- Đường dẫn (Paths) -----
 paths:
-  data_raw: "data/raw/hotel_bookings.csv"
-  data_processed: "data/processed/"
-  outputs_figures: "outputs/figures/"
-  outputs_tables: "outputs/tables/"
-  outputs_models: "outputs/models/"
-  outputs_reports: "outputs/reports/"
+  data_raw: "data/raw/hotel_bookings.csv"           # Dữ liệu thô (raw data)
+  data_processed: "data/processed/"                  # Dữ liệu đã xử lý (processed data)
+  outputs_figures: "outputs/figures/"                # Hình ảnh (figures)
+  outputs_tables: "outputs/tables/"                  # Bảng biểu (tables)
+  outputs_models: "outputs/models/"                  # Mô hình (models)
+  outputs_reports: "outputs/reports/"                # Báo cáo (reports)
 
-# ----- Random Seed -----
+# ----- Seed ngẫu nhiên (Random Seed) -----
 seed: 42
 
-# ----- Data Split -----
+# ----- Chia dữ liệu (Data Split) -----
 split:
-  test_size: 0.2
-  val_size: 0.1  # From training set
-  stratify: true
+  test_size: 0.2      # Tỷ lệ test (20%)
+  val_size: 0.1       # Tỷ lệ validation từ tập huấn luyện (10%)
+  stratify: true      # Giữ nguyên tỷ lệ lớp
 
-# ----- Target Column -----
-target: "is_canceled"
+# ----- Cột mục tiêu (Target Column) -----
+target: "is_canceled"  # 0: Không huỷ, 1: Huỷ
 
-# ----- Columns to Drop (Data Leakage) -----
+# ----- Cột cần loại bỏ (Data Leakage) -----
 leakage_columns:
-  - "reservation_status"
-  - "reservation_status_date"
+  - "reservation_status"        # Gây data leakage
+  - "reservation_status_date"   # Gây data leakage
 
-# ----- Categorical Columns -----
+# ----- Cột phân loại (Categorical Columns) -----
 categorical_columns:
-  - "hotel"
-  - "arrival_date_month"
-  - "meal"
-  - "country"
-  - "market_segment"
-  - "distribution_channel"
-  - "reserved_room_type"
-  - "assigned_room_type"
-  - "deposit_type"
-  - "customer_type"
+  - "hotel"                     # Loại khách sạn
+  - "arrival_date_month"        # Tháng đến
+  - "meal"                      # Loại bữa ăn
+  - "country"                   # Quốc gia
+  - "market_segment"            # Phân khúc thị trường
+  - "distribution_channel"      # Kênh phân phối
+  - "reserved_room_type"        # Loại phòng đặt
+  - "assigned_room_type"        # Loại phòng được xếp
+  - "deposit_type"              # Loại đặt cọc
+  - "customer_type"             # Loại khách hàng
 
-# ----- Numerical Columns -----
+# ----- Cột số (Numerical Columns) -----
 numerical_columns:
-  - "lead_time"
-  - "arrival_date_year"
-  - "arrival_date_week_number"
-  - "arrival_date_day_of_month"
-  - "stays_in_weekend_nights"
-  - "stays_in_week_nights"
-  - "adults"
-  - "children"
-  - "babies"
-  - "previous_cancellations"
-  - "previous_bookings_not_canceled"
-  - "booking_changes"
-  - "days_in_waiting_list"
-  - "adr"
-  - "required_car_parking_spaces"
-  - "total_of_special_requests"
+  - "lead_time"                           # Thời gian đặt trước
+  - "arrival_date_year"                   # Năm đến
+  - "arrival_date_week_number"            # Tuần trong năm
+  - "arrival_date_day_of_month"           # Ngày trong tháng
+  - "stays_in_weekend_nights"             # Số đêm cuối tuần
+  - "stays_in_week_nights"                # Số đêm trong tuần
+  - "adults"                              # Số người lớn
+  - "children"                            # Số trẻ em
+  - "babies"                              # Số em bé
+  - "previous_cancellations"              # Số lần huỷ trước
+  - "previous_bookings_not_canceled"      # Số lần đặt không huỷ trước
+  - "booking_changes"                     # Số lần thay đổi đặt phòng
+  - "days_in_waiting_list"                # Số ngày trong danh sách chờ
+  - "adr"                                 # Giá phòng trung bình/đêm (Average Daily Rate)
+  - "required_car_parking_spaces"         # Số chỗ đỗ xe yêu cầu
+  - "total_of_special_requests"           # Số yêu cầu đặc biệt
 
-# ----- Feature Engineering -----
+# ----- Kỹ thuật đặc trưng (Feature Engineering) -----
 features:
-  # Lead time bins
+  # Phân nhóm lead_time (Lead time bins)
   lead_time_bins:
     - 0
     - 7
@@ -79,150 +80,158 @@ features:
     - 365
     - 1000
   lead_time_labels:
-    - "0-7days"
-    - "7-30days"
-    - "30-90days"
-    - "90-180days"
-    - "180-365days"
-    - "365+days"
+    - "0-7ngay"      # 0-7 days
+    - "7-30ngay"     # 7-30 days
+    - "30-90ngay"    # 30-90 days
+    - "90-180ngay"   # 90-180 days
+    - "180-365ngay"  # 180-365 days
+    - "365+ngay"     # 365+ days
   
-  # Top countries to keep (others -> "Other")
+  # Số quốc gia phổ biến nhất (các quốc gia khác -> "Khác")
   top_n_countries: 10
 
-# ----- Preprocessing -----
+# ----- Tiền xử lý (Preprocessing) -----
 preprocessing:
-  # Missing value strategy: "mean", "median", "mode", "drop"
+  # Chiến lược xử lý giá trị thiếu (Missing value strategy)
+  # "mean": trung bình, "median": trung vị, "mode": mode, "drop": loại bỏ
   numerical_missing: "median"
   categorical_missing: "mode"
   
-  # Outlier handling
-  outlier_method: "iqr"  # "iqr" or "zscore"
-  outlier_threshold: 1.5  # For IQR: 1.5, For zscore: 3
+  # Xử lý outliers
+  outlier_method: "iqr"       # "iqr" hoặc "zscore"
+  outlier_threshold: 1.5      # Với IQR: 1.5, Với zscore: 3
   
-  # Scaling: "standard", "minmax", "robust"
+  # Chuẩn hóa (Scaling): "standard", "minmax", "robust"
   scaling_method: "standard"
   
-  # Encoding: "onehot", "label", "target"
+  # Mã hóa (Encoding): "onehot", "label", "target"
   encoding_method: "onehot"
 
-# ----- Imbalanced Data -----
+# ----- Dữ liệu mất cân bằng (Imbalanced Data) -----
 imbalance:
-  method: "smote"  # "smote", "adasyn", "random_over", "random_under", "class_weight"
+  # Phương pháp: "smote", "adasyn", "random_over", "random_under", "class_weight"
+  method: "smote"
   sampling_strategy: "auto"
 
-# ----- Association Rules -----
+# ----- Luật kết hợp (Association Rules) -----
 association:
-  min_support: 0.01
-  min_confidence: 0.5
-  min_lift: 1.0
-  max_length: 4
+  min_support: 0.01       # Độ hỗ trợ tối thiểu
+  min_confidence: 0.5     # Độ tin cậy tối thiểu
+  min_lift: 1.0           # Độ nâng tối thiểu
+  max_length: 4           # Độ dài luật tối đa
 
-# ----- Clustering -----
+# ----- Phân cụm (Clustering) -----
 clustering:
   algorithms:
-    - "kmeans"
-    - "dbscan"
-    - "hierarchical"
+    - "kmeans"        # K-Means
+    - "dbscan"        # DBSCAN
+    - "hierarchical"  # Phân cụm phân cấp
   kmeans:
-    n_clusters_range: [2, 10]
-    max_iter: 300
+    n_clusters_range: [2, 10]  # Phạm vi số cụm
+    max_iter: 300              # Số vòng lặp tối đa
   dbscan:
-    eps: 0.5
-    min_samples: 5
+    eps: 0.5                   # Bán kính epsilon
+    min_samples: 5             # Số mẫu tối thiểu
   hierarchical:
-    n_clusters: 5
-    linkage: "ward"
+    n_clusters: 5              # Số cụm
+    linkage: "ward"            # Phương pháp liên kết
 
-# ----- Classification Models -----
+# ----- Mô hình phân lớp (Classification Models) -----
 models:
-  # Logistic Regression (Baseline 1)
+  # Hồi quy Logistic (Logistic Regression - Baseline 1)
   logistic_regression:
     max_iter: 1000
     solver: "lbfgs"
-    class_weight: "balanced"
+    class_weight: "balanced"    # Cân bằng trọng số lớp
   
-  # Decision Tree (Baseline 2)
+  # Cây quyết định (Decision Tree - Baseline 2)
   decision_tree:
-    max_depth: 10
-    min_samples_split: 5
+    max_depth: 10               # Độ sâu tối đa
+    min_samples_split: 5        # Số mẫu tối thiểu để tách
     class_weight: "balanced"
   
-  # Random Forest
+  # Rừng ngẫu nhiên (Random Forest)
   random_forest:
-    n_estimators: 100
-    max_depth: 15
+    n_estimators: 100           # Số cây
+    max_depth: 15               # Độ sâu tối đa
     min_samples_split: 5
     class_weight: "balanced"
-    n_jobs: -1
+    n_jobs: -1                  # Dùng tất cả CPU
   
   # XGBoost
   xgboost:
     n_estimators: 100
     max_depth: 6
-    learning_rate: 0.1
-    subsample: 0.8
-    colsample_bytree: 0.8
+    learning_rate: 0.1          # Tốc độ học
+    subsample: 0.8              # Tỷ lệ mẫu
+    colsample_bytree: 0.8       # Tỷ lệ đặc trưng
   
   # LightGBM
   lightgbm:
     n_estimators: 100
-    max_depth: -1
+    max_depth: -1               # -1: không giới hạn
     learning_rate: 0.1
-    num_leaves: 31
+    num_leaves: 31              # Số lá
 
-# ----- Hyperparameter Tuning -----
+# ----- Tinh chỉnh siêu tham số (Hyperparameter Tuning) -----
 tuning:
-  method: "random"  # "grid" or "random"
-  cv_folds: 5
-  n_iter: 50  # For random search
-  scoring: "f1"
+  method: "random"    # "grid": tìm kiếm lưới, "random": tìm kiếm ngẫu nhiên
+  cv_folds: 5         # Số fold cho cross-validation
+  n_iter: 50          # Số lần thử (với random search)
+  scoring: "f1"       # Chỉ số đánh giá
 
-# ----- Semi-Supervised Learning -----
+# ----- Học bán giám sát (Semi-Supervised Learning) -----
 semi_supervised:
+  # Tỷ lệ dữ liệu có nhãn
   labeled_percentages:
-    - 0.05
-    - 0.10
-    - 0.20
+    - 0.05    # 5%
+    - 0.10    # 10%
+    - 0.20    # 20%
   
+  # Self-Training
   self_training:
-    threshold: 0.95
-    max_iter: 10
+    threshold: 0.95     # Ngưỡng xác suất
+    max_iter: 10        # Số vòng lặp tối đa
   
+  # Label Spreading
   label_spreading:
     kernel: "rbf"
     gamma: 20
     max_iter: 1000
 
-# ----- Time Series -----
+# ----- Chuỗi thời gian (Time Series) -----
 time_series:
-  frequency: "M"  # Monthly
-  forecast_periods: 6
+  frequency: "M"            # Tần suất: M = hàng tháng (Monthly)
+  forecast_periods: 6       # Số kỳ dự báo
   
   arima:
-    order: [1, 1, 1]
-    seasonal_order: [1, 1, 1, 12]
+    order: [1, 1, 1]                    # (p, d, q)
+    seasonal_order: [1, 1, 1, 12]       # (P, D, Q, s) - mùa vụ 12 tháng
 
-# ----- Evaluation Metrics -----
+# ----- Chỉ số đánh giá (Evaluation Metrics) -----
 evaluation:
+  # Phân lớp (Classification)
   classification:
-    - "accuracy"
-    - "precision"
-    - "recall"
-    - "f1"
-    - "roc_auc"
-    - "pr_auc"
+    - "accuracy"      # Độ chính xác
+    - "precision"     # Độ chính xác dương
+    - "recall"        # Độ nhạy / Độ phủ
+    - "f1"            # F1-Score
+    - "roc_auc"       # Diện tích dưới đường cong ROC
+    - "pr_auc"        # Diện tích dưới đường cong PR
   
+  # Phân cụm (Clustering)
   clustering:
-    - "silhouette"
-    - "davies_bouldin"
-    - "calinski_harabasz"
+    - "silhouette"          # Hệ số Silhouette
+    - "davies_bouldin"      # Chỉ số Davies-Bouldin
+    - "calinski_harabasz"   # Chỉ số Calinski-Harabasz
   
+  # Chuỗi thời gian (Time Series)
   time_series:
-    - "mae"
-    - "rmse"
-    - "mape"
+    - "mae"     # Sai số tuyệt đối trung bình (Mean Absolute Error)
+    - "rmse"    # Căn bậc hai sai số bình phương trung bình (Root Mean Squared Error)
+    - "mape"    # Sai số phần trăm tuyệt đối trung bình (Mean Absolute Percentage Error)
 
 # ----- Cross Validation -----
 cross_validation:
-  n_splits: 5
-  shuffle: true
+  n_splits: 5       # Số fold
+  shuffle: true     # Xáo trộn dữ liệu

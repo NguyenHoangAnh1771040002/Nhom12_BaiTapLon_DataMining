@@ -1,17 +1,18 @@
 """
-Hotel Booking Cancellation Prediction - Streamlit Demo App
-============================================================
+Ứng Dụng Demo Dự Đoán Huỷ Đặt Phòng Khách Sạn
+=============================================
+(Hotel Booking Cancellation Prediction - Streamlit Demo App)
 
 Ứng dụng web demo dự đoán khả năng huỷ đặt phòng khách sạn.
 
-Usage:
+Cách chạy (Usage):
     streamlit run app/streamlit_app.py
 
-Features:
-    - Nhập thông tin booking
+Tính năng (Features):
+    - Nhập thông tin booking (đặt phòng)
     - Dự đoán xác suất huỷ
-    - Giải thích feature importance
-    - Recommendations cho khách sạn
+    - Giải thích độ quan trọng đặc trưng (feature importance)
+    - Khuyến nghị cho khách sạn (Recommendations)
 """
 
 import streamlit as st
@@ -22,19 +23,19 @@ import os
 import sys
 from pathlib import Path
 
-# Add project root to path
+# Thêm thư mục gốc dự án vào path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-# Page config
+# Cấu hình trang
 st.set_page_config(
-    page_title="Hotel Booking Cancellation Prediction",
+    page_title="Dự Đoán Huỷ Đặt Phòng Khách Sạn",
     page_icon="🏨",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS
+# CSS tùy chỉnh
 st.markdown("""
 <style>
     .main-header {
@@ -80,12 +81,12 @@ st.markdown("""
 
 
 # ============================================================
-# LOAD MODEL AND DATA
+# TẢI MÔ HÌNH VÀ DỮ LIỆU (LOAD MODEL AND DATA)
 # ============================================================
 
 @st.cache_resource
 def load_model():
-    """Load trained model."""
+    """Tải mô hình đã huấn luyện (Load trained model)."""
     model_paths = [
         PROJECT_ROOT / 'outputs' / 'models' / 'random_forest_tuned.joblib',
         PROJECT_ROOT / 'outputs' / 'models' / 'best_model.pkl',
@@ -106,7 +107,7 @@ def load_model():
 
 @st.cache_data
 def load_sample_data():
-    """Load sample data for reference."""
+    """Tải dữ liệu mẫu để tham khảo (Load sample data for reference)."""
     data_path = PROJECT_ROOT / 'data' / 'raw' / 'hotel_bookings.csv'
     if data_path.exists():
         df = pd.read_csv(data_path)
@@ -116,7 +117,7 @@ def load_sample_data():
 
 @st.cache_data
 def get_feature_stats(_df):
-    """Get feature statistics for input validation."""
+    """Lấy thống kê đặc trưng để kiểm tra đầu vào (Get feature statistics)."""
     if _df is None:
         return {}
     
@@ -135,30 +136,30 @@ def get_feature_stats(_df):
 
 
 # ============================================================
-# FEATURE ENGINEERING
+# KỸ THUẬT ĐẶC TRƯNG (FEATURE ENGINEERING)
 # ============================================================
 
 def prepare_features(input_data: dict) -> pd.DataFrame:
-    """Prepare features for prediction."""
+    """Chuẩn bị đặc trưng cho dự đoán (Prepare features for prediction)."""
     
-    # Create base dataframe
+    # Tạo dataframe cơ bản
     df = pd.DataFrame([input_data])
     
-    # Feature engineering
+    # Kỹ thuật đặc trưng (Feature engineering)
     df['total_nights'] = df['stays_in_weekend_nights'] + df['stays_in_week_nights']
     df['total_guests'] = df['adults'] + df['children'] + df['babies']
     df['has_special_requests'] = (df['total_of_special_requests'] > 0).astype(int)
     df['has_booking_changes'] = (df['booking_changes'] > 0).astype(int)
-    df['is_company_booking'] = 0  # Simplified
+    df['is_company_booking'] = 0  # Đơn giản hóa
     df['has_agent'] = 1 if input_data.get('agent', 0) > 0 else 0
     
-    # Deposit required
+    # Yêu cầu đặt cọc
     df['deposit_required'] = (df['deposit_type'] != 'No Deposit').astype(int)
     
-    # Room type changed
+    # Thay đổi loại phòng
     df['room_type_changed'] = (df['reserved_room_type'] != df['assigned_room_type']).astype(int)
     
-    # Season from month
+    # Mùa từ tháng
     month_map = {
         'January': 1, 'February': 2, 'March': 3, 'April': 4,
         'May': 5, 'June': 6, 'July': 7, 'August': 8,
@@ -167,37 +168,37 @@ def prepare_features(input_data: dict) -> pd.DataFrame:
     month_num = month_map.get(input_data['arrival_date_month'], 1)
     
     if month_num in [12, 1, 2]:
-        df['season'] = 'Winter'
+        df['season'] = 'Winter'  # Đông
     elif month_num in [3, 4, 5]:
-        df['season'] = 'Spring'
+        df['season'] = 'Spring'  # Xuân
     elif month_num in [6, 7, 8]:
-        df['season'] = 'Summer'
+        df['season'] = 'Summer'  # Hè
     else:
-        df['season'] = 'Fall'
+        df['season'] = 'Fall'  # Thu
     
-    # Lead time category
+    # Phân loại lead time
     lead_time = input_data['lead_time']
     if lead_time <= 7:
-        df['lead_time_category'] = 'Short'
+        df['lead_time_category'] = 'Short'   # Ngắn hạn
     elif lead_time <= 30:
-        df['lead_time_category'] = 'Medium'
+        df['lead_time_category'] = 'Medium'  # Trung hạn
     elif lead_time <= 90:
-        df['lead_time_category'] = 'Long'
+        df['lead_time_category'] = 'Long'    # Dài hạn
     else:
-        df['lead_time_category'] = 'Very Long'
+        df['lead_time_category'] = 'Very Long'  # Rất dài hạn
     
     return df
 
 
 def get_model_features(model, df: pd.DataFrame) -> pd.DataFrame:
-    """Extract only the features the model expects."""
+    """Trích xuất các đặc trưng mô hình cần (Extract model features)."""
     
-    # Get expected features from model
+    # Lấy danh sách đặc trưng mô hình mong đợi
     try:
         if hasattr(model, 'feature_names_in_'):
             expected_features = list(model.feature_names_in_)
         elif hasattr(model, 'n_features_in_'):
-            # If no names, use numeric columns
+            # Nếu không có tên, dùng các cột số
             numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
             expected_features = numeric_cols[:model.n_features_in_]
         else:
@@ -205,21 +206,21 @@ def get_model_features(model, df: pd.DataFrame) -> pd.DataFrame:
     except:
         expected_features = df.select_dtypes(include=[np.number]).columns.tolist()
     
-    # Create feature dataframe
+    # Tạo dataframe đặc trưng
     feature_df = pd.DataFrame()
     
     for feat in expected_features:
         if feat in df.columns:
             feature_df[feat] = df[feat]
         else:
-            # Try to create missing features
+            # Tạo đặc trưng thiếu
             feature_df[feat] = 0
     
     return feature_df
 
 
 def encode_categorical(df: pd.DataFrame) -> pd.DataFrame:
-    """One-hot encode categorical features."""
+    """Mã hóa one-hot các đặc trưng phân loại."""
     categorical_cols = df.select_dtypes(include=['object']).columns.tolist()
     
     if categorical_cols:
@@ -229,16 +230,16 @@ def encode_categorical(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ============================================================
-# PREDICTION FUNCTIONS
+# CÁC HÀM DỰ ĐOÁN (PREDICTION FUNCTIONS)
 # ============================================================
 
 def predict_cancellation(model, features: pd.DataFrame):
-    """Make prediction with probability."""
+    """Thực hiện dự đoán với xác suất (Make prediction with probability)."""
     try:
-        # Get prediction
+        # Lấy dự đoán
         prediction = model.predict(features)[0]
         
-        # Get probability
+        # Lấy xác suất
         if hasattr(model, 'predict_proba'):
             proba = model.predict_proba(features)[0]
             cancel_prob = proba[1] if len(proba) > 1 else proba[0]
@@ -247,26 +248,26 @@ def predict_cancellation(model, features: pd.DataFrame):
         
         return prediction, cancel_prob
     except Exception as e:
-        st.error(f"Prediction error: {str(e)}")
+        st.error(f"Lỗi dự đoán: {str(e)}")
         return None, None
 
 
 def get_risk_level(probability: float) -> tuple:
-    """Determine risk level from probability."""
+    """Xác định mức độ rủi ro từ xác suất."""
     if probability < 0.3:
-        return "LOW RISK", "low-risk", "🟢"
+        return "RỦI RO THẤP", "low-risk", "🟢"
     elif probability < 0.6:
-        return "MEDIUM RISK", "medium-risk", "🟡"
+        return "RỦI RO TRUNG BÌNH", "medium-risk", "🟡"
     else:
-        return "HIGH RISK", "high-risk", "🔴"
+        return "RỦI RO CAO", "high-risk", "🔴"
 
 
 def get_recommendations(input_data: dict, probability: float) -> list:
-    """Generate recommendations based on input and prediction."""
+    """Tạo khuyến nghị dựa trên đầu vào và dự đoán."""
     recommendations = []
     
     if probability >= 0.5:
-        # High risk booking
+        # Booking rủi ro cao
         if input_data['deposit_type'] == 'No Deposit':
             recommendations.append("💰 **Yêu cầu đặt cọc** để giảm rủi ro huỷ")
         
@@ -296,103 +297,103 @@ def get_recommendations(input_data: dict, probability: float) -> list:
 
 
 def get_key_factors(input_data: dict, probability: float) -> list:
-    """Identify key factors affecting the prediction."""
+    """Xác định các yếu tố chính ảnh hưởng đến dự đoán."""
     factors = []
     
-    # Lead time
+    # Lead time (Thời gian đặt trước)
     if input_data['lead_time'] > 100:
-        factors.append(("Lead Time", f"{input_data['lead_time']} ngày", "⬆️ Rủi ro cao", "#dc3545"))
+        factors.append(("Thời gian đặt trước", f"{input_data['lead_time']} ngày", "⬆️ Rủi ro cao", "#dc3545"))
     elif input_data['lead_time'] < 7:
-        factors.append(("Lead Time", f"{input_data['lead_time']} ngày", "⬇️ Rủi ro thấp", "#28a745"))
+        factors.append(("Thời gian đặt trước", f"{input_data['lead_time']} ngày", "⬇️ Rủi ro thấp", "#28a745"))
     
-    # Deposit
+    # Deposit (Đặt cọc)
     if input_data['deposit_type'] == 'No Deposit':
         factors.append(("Đặt cọc", "Không", "⬆️ Rủi ro cao", "#dc3545"))
     elif input_data['deposit_type'] == 'Non Refund':
         factors.append(("Đặt cọc", "Không hoàn", "⬇️ Rủi ro thấp", "#28a745"))
     
-    # Special requests
+    # Special requests (Yêu cầu đặc biệt)
     if input_data['total_of_special_requests'] > 0:
         factors.append(("Yêu cầu đặc biệt", str(input_data['total_of_special_requests']), "⬇️ Rủi ro thấp", "#28a745"))
     else:
         factors.append(("Yêu cầu đặc biệt", "0", "⬆️ Rủi ro cao", "#ffc107"))
     
-    # Repeated guest
+    # Repeated guest (Khách quen)
     if input_data.get('is_repeated_guest', 0) == 1:
         factors.append(("Khách quen", "Có", "⬇️ Rủi ro thấp", "#28a745"))
     
-    # Market segment
+    # Market segment (Phân khúc thị trường)
     if input_data['market_segment'] in ['Groups', 'Online TA']:
         factors.append(("Phân khúc", input_data['market_segment'], "⬆️ Rủi ro cao", "#ffc107"))
     elif input_data['market_segment'] == 'Direct':
-        factors.append(("Phân khúc", "Direct", "⬇️ Rủi ro thấp", "#28a745"))
+        factors.append(("Phân khúc", "Đặt trực tiếp", "⬇️ Rủi ro thấp", "#28a745"))
     
     return factors
 
 
 # ============================================================
-# MAIN APP
+# ỨNG DỤNG CHÍNH (MAIN APP)
 # ============================================================
 
 def main():
-    # Header
-    st.markdown('<h1 class="main-header">🏨 Hotel Booking Cancellation Prediction</h1>', unsafe_allow_html=True)
+    # Tiêu đề
+    st.markdown('<h1 class="main-header">🏨 Dự Đoán Huỷ Đặt Phòng Khách Sạn</h1>', unsafe_allow_html=True)
     st.markdown("""
     <p style="text-align: center; color: #666; font-size: 1.1rem;">
         Dự đoán khả năng huỷ đặt phòng và nhận khuyến nghị quản lý rủi ro
     </p>
     """, unsafe_allow_html=True)
     
-    # Load model
+    # Tải mô hình
     model, model_name = load_model()
     
     if model is None:
-        st.error("❌ Không tìm thấy model đã train. Vui lòng chạy pipeline training trước.")
+        st.error("❌ Không tìm thấy model đã huấn luyện. Vui lòng chạy pipeline training trước.")
         st.info("Chạy: `python scripts/run_pipeline.py --modeling`")
         return
     
-    # Load sample data for reference
+    # Tải dữ liệu mẫu để tham khảo
     sample_df = load_sample_data()
     stats = get_feature_stats(sample_df)
     
-    # Sidebar - Model Info
+    # Sidebar - Thông tin Model
     with st.sidebar:
-        st.header("ℹ️ Thông tin Model")
-        st.success(f"**Model:** {model_name}")
+        st.header("ℹ️ Thông Tin Mô Hình")
+        st.success(f"**Mô hình:** {model_name}")
         
         if hasattr(model, 'n_estimators'):
-            st.info(f"**Trees:** {model.n_estimators}")
+            st.info(f"**Số cây:** {model.n_estimators}")
         
         st.markdown("---")
-        st.header("📊 Thống kê Dataset")
+        st.header("📊 Thống Kê Dataset")
         if sample_df is not None:
-            st.metric("Tổng bookings", f"{len(sample_df):,}")
+            st.metric("Tổng số đặt phòng", f"{len(sample_df):,}")
             cancel_rate = sample_df['is_canceled'].mean() * 100
             st.metric("Tỷ lệ huỷ", f"{cancel_rate:.1f}%")
         
         st.markdown("---")
-        st.header("🎯 Model Performance")
+        st.header("🎯 Hiệu Suất Mô Hình")
         st.markdown("""
         - **F1-Score:** 0.8010
-        - **Accuracy:** 85.7%
+        - **Độ chính xác:** 85.7%
         - **ROC-AUC:** 0.9268
         """)
     
-    # Main content
+    # Nội dung chính
     st.markdown("---")
     
-    # Input form
-    st.header("📝 Nhập Thông Tin Booking")
+    # Form nhập liệu
+    st.header("📝 Nhập Thông Tin Đặt Phòng")
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.subheader("🏨 Thông tin khách sạn")
+        st.subheader("🏨 Thông Tin Khách Sạn")
         
         hotel = st.selectbox(
             "Loại khách sạn",
             options=stats.get('hotels', ['City Hotel', 'Resort Hotel']),
-            help="City Hotel hoặc Resort Hotel"
+            help="Khách sạn thành phố hoặc Resort"
         )
         
         arrival_month = st.selectbox(
@@ -402,7 +403,7 @@ def main():
         )
         
         lead_time = st.slider(
-            "Lead Time (ngày)",
+            "Thời gian đặt trước (ngày)",
             min_value=0,
             max_value=500,
             value=50,
@@ -410,21 +411,21 @@ def main():
         )
         
         stays_weekend = st.number_input(
-            "Đêm cuối tuần",
+            "Số đêm cuối tuần",
             min_value=0,
             max_value=10,
             value=1
         )
         
         stays_week = st.number_input(
-            "Đêm trong tuần",
+            "Số đêm trong tuần",
             min_value=0,
             max_value=20,
             value=2
         )
     
     with col2:
-        st.subheader("👥 Thông tin khách")
+        st.subheader("👥 Thông Tin Khách Hàng")
         
         adults = st.number_input(
             "Số người lớn",
@@ -456,12 +457,12 @@ def main():
         
         country = st.selectbox(
             "Quốc gia",
-            options=['PRT', 'GBR', 'FRA', 'ESP', 'DEU', 'ITA', 'IRL', 'BEL', 'BRA', 'NLD', 'USA', 'Other'],
+            options=['PRT', 'GBR', 'FRA', 'ESP', 'DEU', 'ITA', 'IRL', 'BEL', 'BRA', 'NLD', 'USA', 'Khác'],
             index=0
         )
     
     with col3:
-        st.subheader("💳 Thông tin đặt phòng")
+        st.subheader("💳 Thông Tin Đặt Phòng")
         
         market_segment = st.selectbox(
             "Phân khúc thị trường",
@@ -471,7 +472,7 @@ def main():
         deposit_type = st.selectbox(
             "Loại đặt cọc",
             options=stats.get('deposit_types', ['No Deposit', 'Non Refund', 'Refundable']),
-            help="No Deposit = rủi ro cao hơn"
+            help="Không đặt cọc = rủi ro cao hơn"
         )
         
         meal = st.selectbox(
@@ -485,7 +486,7 @@ def main():
         )
         
         assigned_room_type = st.selectbox(
-            "Loại phòng được gán",
+            "Loại phòng được xếp",
             options=stats.get('room_types', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']),
             index=0
         )
@@ -507,7 +508,7 @@ def main():
         )
         
         booking_changes = st.number_input(
-            "Số lần thay đổi booking",
+            "Số lần thay đổi đặt phòng",
             min_value=0,
             max_value=10,
             value=0
@@ -515,17 +516,17 @@ def main():
     
     st.markdown("---")
     
-    # Predict button
+    # Nút dự đoán
     col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
     with col_btn2:
         predict_button = st.button(
-            "🔮 DỰ ĐOÁN CANCELLATION",
+            "🔮 DỰ ĐOÁN KHẢ NĂNG HUỶ",
             use_container_width=True,
             type="primary"
         )
     
     if predict_button:
-        # Prepare input data
+        # Chuẩn bị dữ liệu đầu vào
         input_data = {
             'hotel': hotel,
             'lead_time': lead_time,
@@ -536,7 +537,7 @@ def main():
             'children': children,
             'babies': babies,
             'meal': meal,
-            'country': country,
+            'country': country if country != 'Khác' else 'Other',
             'market_segment': market_segment,
             'is_repeated_guest': 1 if is_repeated_guest else 0,
             'previous_cancellations': 0,
@@ -553,24 +554,24 @@ def main():
             'total_of_special_requests': special_requests,
         }
         
-        # Prepare features
+        # Chuẩn bị đặc trưng (Prepare features)
         with st.spinner("Đang phân tích..."):
             features_df = prepare_features(input_data)
             features_encoded = encode_categorical(features_df)
             
-            # Get model features
+            # Lấy các đặc trưng của mô hình (Get model features)
             try:
                 model_features = get_model_features(model, features_encoded)
                 prediction, probability = predict_cancellation(model, model_features)
             except Exception as e:
-                # Fallback: use only numeric features
+                # Phương án dự phòng: chỉ dùng đặc trưng số (Fallback: use only numeric features)
                 numeric_features = features_encoded.select_dtypes(include=[np.number])
                 
-                # Match number of features
+                # Khớp số lượng đặc trưng (Match number of features)
                 if hasattr(model, 'n_features_in_'):
                     n_expected = model.n_features_in_
                     if len(numeric_features.columns) < n_expected:
-                        # Pad with zeros
+                        # Thêm giá trị 0 cho đủ đặc trưng (Pad with zeros)
                         for i in range(len(numeric_features.columns), n_expected):
                             numeric_features[f'feature_{i}'] = 0
                     elif len(numeric_features.columns) > n_expected:
@@ -584,25 +585,25 @@ def main():
             
             risk_level, risk_class, risk_emoji = get_risk_level(probability)
             
-            # Main prediction display
+            # Hiển thị kết quả dự đoán chính (Main prediction display)
             col_result1, col_result2 = st.columns([2, 1])
             
             with col_result1:
                 st.markdown(f"""
                 <div class="prediction-box {risk_class}">
                     <h1>{risk_emoji} {probability*100:.1f}%</h1>
-                    <h3>Xác suất huỷ booking</h3>
+                    <h3>Xác suất huỷ đặt phòng</h3>
                     <h2 style="margin-top: 1rem;">{risk_level}</h2>
                 </div>
                 """, unsafe_allow_html=True)
             
             with col_result2:
-                st.markdown("### 📈 Metrics")
+                st.markdown("### 📈 Chỉ Số")
                 st.metric("Xác suất huỷ", f"{probability*100:.1f}%")
                 st.metric("Xác suất giữ", f"{(1-probability)*100:.1f}%")
                 st.metric("Mức độ rủi ro", risk_level)
             
-            # Key factors
+            # Các yếu tố quan trọng (Key factors)
             st.markdown("---")
             st.header("🔍 Các Yếu Tố Ảnh Hưởng")
             
@@ -620,7 +621,7 @@ def main():
                     </div>
                     """, unsafe_allow_html=True)
             
-            # Recommendations
+            # Khuyến nghị (Recommendations)
             st.markdown("---")
             st.header("💡 Khuyến Nghị")
             
@@ -629,14 +630,14 @@ def main():
             for rec in recommendations:
                 st.markdown(f"- {rec}")
             
-            # Summary table
+            # Bảng tóm tắt (Summary table)
             st.markdown("---")
-            st.header("📋 Tóm Tắt Booking")
+            st.header("📋 Tóm Tắt Đặt Phòng")
             
             summary_data = {
-                'Thông tin': ['Khách sạn', 'Lead Time', 'Số đêm', 'Số khách', 'Giá/đêm', 
+                'Thông Tin': ['Khách sạn', 'Thời gian đặt trước', 'Số đêm', 'Số khách', 'Giá/đêm', 
                              'Phân khúc', 'Đặt cọc', 'Yêu cầu đặc biệt'],
-                'Giá trị': [
+                'Giá Trị': [
                     str(hotel),
                     f"{lead_time} ngày",
                     f"{stays_weekend + stays_week} đêm ({stays_weekend} cuối tuần)",
@@ -650,12 +651,12 @@ def main():
             
             st.table(pd.DataFrame(summary_data))
     
-    # Footer
+    # Chân trang (Footer)
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #888; font-size: 0.9rem;">
-        <p>🎓 Hotel Booking Cancellation Prediction - Data Mining Project</p>
-        <p>Model: Random Forest (Tuned) | F1-Score: 0.8010 | Accuracy: 85.7%</p>
+        <p>🎓 Dự Đoán Huỷ Đặt Phòng Khách Sạn - Đồ Án Khai Phá Dữ Liệu</p>
+        <p>Mô hình: Random Forest (Đã tinh chỉnh) | F1-Score: 0.8010 | Độ chính xác: 85.7%</p>
     </div>
     """, unsafe_allow_html=True)
 

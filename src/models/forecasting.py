@@ -1,19 +1,17 @@
 """
-Time Series Forecasting for Hotel Booking Cancellation Rate
-===========================================================
+Module Dự Báo Chuỗi Thời Gian - Tỷ Lệ Huỷ Đặt Phòng
+====================================================
+(Time Series Forecasting for Hotel Booking Cancellation Rate)
 
-This module provides time series analysis and forecasting methods
-for predicting cancellation rates over time.
+Module cung cấp các phương pháp phân tích và dự báo chuỗi thời gian
+cho tỷ lệ huỷ đặt phòng theo thời gian.
 
-Methods included:
-- Data aggregation by time period (month, week)
-- ARIMA/SARIMA models
-- Simple forecasting baselines (moving average, exponential smoothing)
-- Prophet (optional, if installed)
-- Evaluation metrics (MAE, RMSE, MAPE)
-
-Author: Nhom12
-Date: 2024
+Các phương pháp:
+- Tổng hợp dữ liệu theo kỳ (tháng, tuần)
+- Mô hình ARIMA/SARIMA
+- Các baseline đơn giản (trung bình trượt, làm mượt mũ)
+- Prophet (tùy chọn)
+- Các chỉ số đánh giá (MAE, RMSE, MAPE)
 """
 
 import numpy as np

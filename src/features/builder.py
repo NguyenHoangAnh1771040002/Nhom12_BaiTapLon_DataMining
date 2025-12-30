@@ -1,21 +1,21 @@
 """
-Feature Builder Module
-======================
+Module Xây Dựng Đặc Trưng (Feature Builder)
+==========================================
 
-Utilities for feature engineering on hotel booking data.
+Các hàm kỹ thuật đặc trưng (feature engineering) trên dữ liệu đặt phòng.
 
-Functions:
-----------
-- create_total_guests: Create total_guests feature
-- create_total_nights: Create total_nights feature
-- discretize_lead_time: Bin lead_time into categories
-- discretize_country: Group countries into top N + Other
-- create_season_features: Create seasonal features from arrival_date_month
-- create_guest_history_features: Create features based on guest history
-- create_room_features: Create room-related features
-- create_booking_features: Create booking-related features
-- create_all_features: Apply all feature engineering
-- prepare_for_association_rules: Prepare data for association rule mining
+Các hàm chính:
+--------------
+- create_total_guests: Tạo đặc trưng tổng số khách
+- create_total_nights: Tạo đặc trưng tổng số đêm
+- discretize_lead_time: Phân nhóm lead_time thành khoảng
+- discretize_country: Nhóm quốc gia thành top N + Khác
+- create_season_features: Tạo đặc trưng mùa
+- create_guest_history_features: Tạo đặc trưng lịch sử khách
+- create_room_features: Tạo đặc trưng phòng
+- create_booking_features: Tạo đặc trưng đặt phòng
+- create_all_features: Áp dụng tất cả kỹ thuật đặc trưng
+- prepare_for_association_rules: Chuẩn bị dữ liệu cho luật kết hợp
 """
 
 import pandas as pd

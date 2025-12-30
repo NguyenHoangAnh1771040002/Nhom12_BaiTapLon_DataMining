@@ -1,20 +1,17 @@
 """
-Visualization Module - Plots
-============================
+Module Trực Quan Hóa (Visualization)
+====================================
 
-Comprehensive plotting functions for data mining project.
+Các hàm vẽ biểu đồ toàn diện cho dự án khai phá dữ liệu.
 
-Functions:
-----------
-- Distribution plots
-- Correlation heatmaps
-- Model comparison charts
-- Learning curves
-- Error analysis plots
-- Business insights visualizations
-
-Author: Nhom12
-Date: 2024
+Các hàm chính:
+--------------
+- Biểu đồ phân phối (Distribution plots)
+- Biểu đồ tương quan (Correlation heatmaps)
+- Biểu đồ so sánh mô hình (Model comparison)
+- Đường cong học (Learning curves)
+- Phân tích lỗi (Error analysis)
+- Trực quan hóa business insights
 """
 
 import numpy as np
