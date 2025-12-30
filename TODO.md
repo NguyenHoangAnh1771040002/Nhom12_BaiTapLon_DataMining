@@ -35,11 +35,66 @@
 
 ---
 
+## � THÔNG TIN DATASET
+
+| Thuộc tính | Giá trị |
+|------------|---------|
+| **Số dòng** | 119,390 |
+| **Số cột** | 32 |
+| **Dung lượng** | ~94 MB |
+| **Target** | `is_canceled` (0: Không huỷ, 1: Huỷ) |
+| **Tỷ lệ huỷ** | 37.04% (44,224 / 119,390) → **Imbalanced** |
+
+### Các cột trong dataset:
+
+| # | Cột | Kiểu | Missing | Ghi chú |
+|---|-----|------|---------|---------|
+| 1 | `hotel` | object | 0 | Resort Hotel / City Hotel |
+| 2 | `is_canceled` | int64 | 0 | **TARGET** (0/1) |
+| 3 | `lead_time` | int64 | 0 | Số ngày từ đặt đến nhận phòng |
+| 4 | `arrival_date_year` | int64 | 0 | Năm (2015-2017) |
+| 5 | `arrival_date_month` | object | 0 | Tháng |
+| 6 | `arrival_date_week_number` | int64 | 0 | Tuần trong năm |
+| 7 | `arrival_date_day_of_month` | int64 | 0 | Ngày trong tháng |
+| 8 | `stays_in_weekend_nights` | int64 | 0 | Số đêm cuối tuần |
+| 9 | `stays_in_week_nights` | int64 | 0 | Số đêm trong tuần |
+| 10 | `adults` | int64 | 0 | Số người lớn |
+| 11 | `children` | float64 | **4** | Số trẻ em |
+| 12 | `babies` | int64 | 0 | Số em bé |
+| 13 | `meal` | object | 0 | Loại bữa ăn |
+| 14 | `country` | object | **488** | Quốc gia |
+| 15 | `market_segment` | object | 0 | Phân khúc thị trường |
+| 16 | `distribution_channel` | object | 0 | Kênh phân phối |
+| 17 | `is_repeated_guest` | int64 | 0 | Khách quay lại (0/1) |
+| 18 | `previous_cancellations` | int64 | 0 | Số lần huỷ trước |
+| 19 | `previous_bookings_not_canceled` | int64 | 0 | Số lần đặt không huỷ |
+| 20 | `reserved_room_type` | object | 0 | Loại phòng đặt |
+| 21 | `assigned_room_type` | object | 0 | Loại phòng được gán |
+| 22 | `booking_changes` | int64 | 0 | Số lần thay đổi |
+| 23 | `deposit_type` | object | 0 | Loại đặt cọc |
+| 24 | `agent` | float64 | **16,340** | ID đại lý |
+| 25 | `company` | float64 | **112,593** | ID công ty (94% missing!) |
+| 26 | `days_in_waiting_list` | int64 | 0 | Số ngày chờ |
+| 27 | `customer_type` | object | 0 | Loại khách hàng |
+| 28 | `adr` | float64 | 0 | Giá phòng trung bình/đêm |
+| 29 | `required_car_parking_spaces` | int64 | 0 | Số chỗ đỗ xe |
+| 30 | `total_of_special_requests` | int64 | 0 | Số yêu cầu đặc biệt |
+| 31 | `reservation_status` | object | 0 | ⚠️ **DATA LEAKAGE** |
+| 32 | `reservation_status_date` | object | 0 | ⚠️ **DATA LEAKAGE** |
+
+### ⚠️ Vấn đề cần xử lý:
+1. **Data Leakage**: `reservation_status` chứa kết quả (Check-Out/Canceled/No-Show) → PHẢI DROP
+2. **Missing Values**: `children` (4), `country` (488), `agent` (16,340), `company` (112,593)
+3. **Imbalanced**: 37% huỷ vs 63% không huỷ → Cần SMOTE/class_weight
+4. **Cột `company`**: 94% missing → Xem xét DROP
+
+---
+
 ## 🟠 PHASE 2: KHÁM PHÁ DỮ LIỆU (EDA)
 
 ### 2.1. Tạo module loader
-- [ ] `src/data/__init__.py`
-- [ ] `src/data/loader.py` - Hàm đọc dữ liệu, kiểm tra schema
+- [x] `src/data/__init__.py`
+- [x] `src/data/loader.py` - Hàm đọc dữ liệu, kiểm tra schema
 
 ### 2.2. Notebook 01_eda.ipynb
 - [ ] Tạo notebook `notebooks/01_eda.ipynb`
@@ -304,7 +359,7 @@
 
 | Phase | Mô tả | Trạng thái |
 |-------|-------|------------|
-| 1 | Thiết lập dự án | ⬜ Chưa bắt đầu |
+| 1 | Thiết lập dự án | ✅ Hoàn thành |
 | 2 | EDA | ⬜ Chưa bắt đầu |
 | 3 | Tiền xử lý & Features | ⬜ Chưa bắt đầu |
 | 4 | Data Mining | ⬜ Chưa bắt đầu |
@@ -315,6 +370,8 @@
 | 9 | Pipeline | ⬜ Chưa bắt đầu |
 | 10 | Demo App (Bonus) | ⬜ Chưa bắt đầu |
 | 11 | Báo cáo cuối | ⬜ Chưa bắt đầu |
+
+**Tiến độ: 1/11 phases (9%)**
 
 ---
 

@@ -7,8 +7,11 @@ Utilities for loading and cleaning data.
 Classes/Functions:
 ------------------
 - loader: Load data from various sources
-- cleaner: Clean and preprocess data
+- cleaner: Clean and preprocess data (to be implemented)
 """
 
 from .loader import *
-from .cleaner import *
+
+# cleaner will be imported when implemented
+# from .cleaner import *
+
