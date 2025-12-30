@@ -1,0 +1,53 @@
+
+================================================================================
+PHASE 7: TIME SERIES FORECASTING - SUMMARY REPORT
+================================================================================
+
+1. DATA OVERVIEW
+----------------
+- Total bookings: 119,390
+- Time periods (months): 26
+- Date range: 2015-07 to 2017-08
+- Training periods: 20
+- Test periods: 6
+
+2. TIME SERIES STATISTICS
+-------------------------
+- Mean cancellation rate: 0.3628 (36.28%)
+- Std cancellation rate: 0.0558
+- Min cancellation rate: 0.2077 (20.77%)
+- Max cancellation rate: 0.4535 (45.35%)
+
+3. MODEL COMPARISON
+-------------------
+                     mae      rmse       mape
+MA(6)           0.043421  0.052569  10.388724
+MA(3)           0.056793  0.067527  13.503336
+ARIMA(1,1,1)    0.070481  0.080936  16.890571
+Naive           0.071826  0.081944  17.242159
+ARIMA(2,1,2)    0.072267  0.082847  17.325912
+Exp. Smoothing  0.081958  0.091238  19.813531
+
+4. BEST MODEL
+-------------
+Model: MA(6)
+- MAE:  0.0434
+- RMSE: 0.0526
+- MAPE: 10.39%
+
+5. OUTPUT FILES
+---------------
+Figures:
+- ts_cancellation_rate.png
+- ts_bookings_cancellations.png
+- ts_decomposition.png (if data sufficient)
+- ts_acf_pacf.png
+- ts_train_test_split.png
+- ts_model_comparison.png
+- ts_best_forecast.png
+- ts_all_forecasts.png
+
+Tables:
+- ts_model_comparison.csv
+
+================================================================================

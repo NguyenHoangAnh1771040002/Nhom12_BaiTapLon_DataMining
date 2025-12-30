@@ -8,7 +8,7 @@ Classes/Functions:
 ------------------
 - supervised: Classification models (Logistic, Tree, RF, XGBoost)
 - semi_supervised: Self-training, Label Propagation, Label Spreading
-- forecasting: Time series models (ARIMA, SARIMA)
+- forecasting: Time series models (ARIMA, SARIMA, Exponential Smoothing)
 """
 
 # Import supervised learning functions
@@ -122,3 +122,98 @@ __all__ = [
     'plot_learning_curve_by_labels',
     'plot_pseudo_label_confusion_matrix'
 ]
+
+# Import time series forecasting functions
+from .forecasting import (
+    # Data preparation
+    create_date_column,
+    aggregate_by_period,
+    prepare_time_series,
+    
+    # Analysis
+    check_stationarity,
+    decompose_time_series,
+    
+    # Models
+    train_arima,
+    train_sarima,
+    train_exponential_smoothing,
+    train_prophet,
+    
+    # Baselines
+    moving_average_forecast,
+    naive_forecast,
+    
+    # Forecasting
+    forecast,
+    
+    # Evaluation
+    calculate_mae,
+    calculate_rmse,
+    calculate_mape,
+    evaluate_forecast,
+    
+    # Train-test split
+    train_test_split_ts,
+    
+    # Visualization
+    plot_time_series,
+    plot_decomposition,
+    plot_forecast,
+    plot_model_comparison,
+    
+    # Pipeline
+    run_forecasting_pipeline,
+    
+    # Availability flags
+    STATSMODELS_AVAILABLE,
+    PROPHET_AVAILABLE
+)
+
+# Extend __all__ with forecasting exports
+__all__.extend([
+    # ============ TIME SERIES FORECASTING ============
+    # Data preparation
+    'create_date_column',
+    'aggregate_by_period', 
+    'prepare_time_series',
+    
+    # Analysis
+    'check_stationarity',
+    'decompose_time_series',
+    
+    # Models
+    'train_arima',
+    'train_sarima',
+    'train_exponential_smoothing',
+    'train_prophet',
+    
+    # Baselines
+    'moving_average_forecast',
+    'naive_forecast',
+    
+    # Forecasting
+    'forecast',
+    
+    # Evaluation
+    'calculate_mae',
+    'calculate_rmse',
+    'calculate_mape',
+    'evaluate_forecast',
+    
+    # Train-test split
+    'train_test_split_ts',
+    
+    # Visualization
+    'plot_time_series',
+    'plot_decomposition',
+    'plot_forecast',
+    'plot_model_comparison',
+    
+    # Pipeline
+    'run_forecasting_pipeline',
+    
+    # Flags
+    'STATSMODELS_AVAILABLE',
+    'PROPHET_AVAILABLE'
+])
