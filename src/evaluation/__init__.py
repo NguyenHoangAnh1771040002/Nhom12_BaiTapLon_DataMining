@@ -42,6 +42,30 @@ from .metrics import (
     evaluate_model
 )
 
+# Import report functions
+from .report import (
+    # Summary tables
+    create_model_summary_table,
+    create_classification_report_table,
+    create_comparison_table,
+    create_feature_importance_table,
+    create_error_analysis_table,
+    
+    # Business insights
+    extract_business_insights,
+    format_insights_markdown,
+    
+    # Export functions
+    export_table_csv,
+    export_table_latex,
+    export_table_excel,
+    export_results_json,
+    
+    # Report generation
+    generate_summary_report,
+    generate_full_report
+)
+
 __all__ = [
     # Metrics
     'calculate_metrics',
@@ -70,5 +94,26 @@ __all__ = [
     'plot_threshold_analysis',
     
     # Pipeline
-    'evaluate_model'
+    'evaluate_model',
+    
+    # Report - Summary tables
+    'create_model_summary_table',
+    'create_classification_report_table',
+    'create_comparison_table',
+    'create_feature_importance_table',
+    'create_error_analysis_table',
+    
+    # Report - Business insights
+    'extract_business_insights',
+    'format_insights_markdown',
+    
+    # Report - Export functions
+    'export_table_csv',
+    'export_table_latex',
+    'export_table_excel',
+    'export_results_json',
+    
+    # Report - Report generation
+    'generate_summary_report',
+    'generate_full_report'
 ]

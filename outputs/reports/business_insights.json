@@ -1,0 +1,58 @@
+{
+  "insights": [
+    {
+      "category": "Overview",
+      "title": "Overall Cancellation Rate",
+      "insight": "Tỷ lệ hủy đặt phòng tổng thể là 37.0%.",
+      "recommendation": "Cần có chiến lược chủ động để giảm tỷ lệ hủy đặt phòng."
+    },
+    {
+      "category": "Lead Time",
+      "title": "Impact of Lead Time",
+      "insight": "Đặt phòng với lead time > 100 ngày có tỷ lệ hủy 51.1%, trong khi lead time <= 30 ngày chỉ có 18.6%.",
+      "recommendation": "Áp dụng chính sách đặt cọc cao hơn cho đặt phòng có lead time dài."
+    },
+    {
+      "category": "Deposit Policy",
+      "title": "Deposit Type Impact",
+      "insight": "Tỷ lệ hủy theo loại deposit: No Deposit: 28.4%, Non Refund: 99.4%, Refundable: 22.2%.",
+      "recommendation": "Khuyến khích khách hàng đặt cọc không hoàn lại để giảm tỷ lệ hủy."
+    },
+    {
+      "category": "Customer Segment",
+      "title": "Customer Type Risk",
+      "insight": "Nhóm khách hàng \"Transient\" có tỷ lệ hủy cao nhất (40.7%).",
+      "recommendation": "Tập trung chương trình loyalty cho nhóm \"Transient\" để giữ chân khách."
+    },
+    {
+      "category": "Market Segment",
+      "title": "High-Risk Segments",
+      "insight": "Các phân khúc có rủi ro cao: Undefined (100.0%), Groups (61.1%).",
+      "recommendation": "Xem xét yêu cầu đặt cọc hoặc xác nhận bổ sung cho các phân khúc rủi ro cao."
+    },
+    {
+      "category": "Booking History",
+      "title": "Previous Cancellation Pattern",
+      "insight": "Khách có lịch sử hủy trước đó có tỷ lệ hủy 91.6%, so với 33.9% cho khách không có lịch sử hủy.",
+      "recommendation": "Áp dụng chính sách đặt phòng nghiêm ngặt hơn với khách có lịch sử hủy."
+    },
+    {
+      "category": "Predictive Features",
+      "title": "Key Predictive Factors",
+      "insight": "Các yếu tố dự đoán hủy quan trọng nhất: deposit_required, lead_time, agent, has_special_requests, room_type_changed.",
+      "recommendation": "Tập trung thu thập và phân tích các yếu tố này để cải thiện dự đoán."
+    },
+    {
+      "category": "Model Performance",
+      "title": "Best Prediction Model",
+      "insight": "Mô hình Random Forest (Tuned) đạt hiệu suất cao nhất với F1-score = 0.8010.",
+      "recommendation": "Deploy mô hình này vào hệ thống để dự đoán và can thiệp sớm."
+    },
+    {
+      "category": "Seasonality",
+      "title": "Seasonal Cancellation Patterns",
+      "insight": "Các tháng có tỷ lệ hủy cao: June (41.5%), April (40.8%), May (39.7%).",
+      "recommendation": "Điều chỉnh chính sách đặt phòng và overbooking theo mùa."
+    }
+  ]
+}

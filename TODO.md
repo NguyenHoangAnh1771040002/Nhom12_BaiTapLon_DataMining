@@ -320,40 +320,84 @@
 
 ---
 
-## 🔶 PHASE 8: TỔNG HỢP & BÁO CÁO
+## ✅ PHASE 8: TỔNG HỢP & BÁO CÁO - HOÀN THÀNH!
 
-### 8.1. Tạo module visualization
-- [ ] `src/visualization/__init__.py`
-- [ ] `src/visualization/plots.py`
-  - [ ] Hàm vẽ distribution plot
-  - [ ] Hàm vẽ correlation heatmap
-  - [ ] Hàm vẽ model comparison bar chart
-  - [ ] Hàm vẽ learning curve
+### 8.1. Tạo module visualization ✅
+- [x] `src/visualization/__init__.py`
+- [x] `src/visualization/plots.py`
+  - [x] Hàm vẽ distribution plot
+  - [x] Hàm vẽ correlation heatmap
+  - [x] Hàm vẽ model comparison bar chart
+  - [x] Hàm vẽ radar chart
+  - [x] Hàm vẽ confusion matrix detailed
+  - [x] Hàm vẽ feature importance bar
+  - [x] Hàm vẽ cumulative importance
+  - [x] Hàm vẽ learning curve
 
-### 8.2. Tạo module report
-- [ ] `src/evaluation/report.py`
-  - [ ] Hàm tạo bảng tổng hợp kết quả
-  - [ ] Hàm export figures
-  - [ ] Hàm export tables (CSV/LaTeX)
+### 8.2. Tạo module report ✅
+- [x] `src/evaluation/report.py`
+  - [x] Hàm tạo bảng tổng hợp kết quả
+  - [x] Hàm export figures
+  - [x] Hàm export tables (CSV/JSON)
+  - [x] Hàm generate_summary_report
+  - [x] Hàm generate_full_report
+  - [x] Hàm extract_business_insights
 
-### 8.3. Notebook 05_evaluation_report.ipynb
-- [ ] Tạo notebook `notebooks/05_evaluation_report.ipynb`
-- [ ] **Tổng hợp kết quả:**
-  - [ ] Bảng so sánh tất cả models
-  - [ ] Best model selection với justification
-- [ ] **Phân tích lỗi:**
-  - [ ] Error analysis của best model
-  - [ ] Các trường hợp FP/FN phổ biến
-- [ ] **Insights (≥5 actionable insights):**
-  - [ ] Insight 1: Đặc điểm booking dễ huỷ
-  - [ ] Insight 2: Thời điểm rủi ro cao
-  - [ ] Insight 3: Phân khúc khách hàng rủi ro
-  - [ ] Insight 4: Khuyến nghị cho khách sạn
-  - [ ] Insight 5: Chiến lược giảm tỷ lệ huỷ
-- [ ] **Export outputs:**
-  - [ ] Lưu figures vào `outputs/figures/`
-  - [ ] Lưu tables vào `outputs/tables/`
-  - [ ] Lưu trained models vào `outputs/models/`
+### 8.3. Notebook 06_evaluation_report.ipynb ✅
+- [x] Tạo notebook `notebooks/06_evaluation_report.ipynb`
+- [x] **Tổng hợp kết quả:**
+  - [x] Bảng so sánh tất cả models (supervised, semi-supervised, time series)
+  - [x] Model comparison bar chart & radar chart
+  - [x] Best model selection với justification
+- [x] **Phân tích lỗi:**
+  - [x] Error analysis của best model
+  - [x] Confusion matrix detailed
+  - [x] Classification report
+- [x] **Insights (9 actionable insights):**
+  - [x] Insight 1: Đặc điểm booking dễ huỷ (Top 5 Features)
+  - [x] Insight 2: Thời điểm rủi ro cao (Lead Time Analysis)
+  - [x] Insight 3: Phân khúc khách hàng rủi ro
+  - [x] Insight 4: Deposit Type Analysis
+  - [x] Insight 5: Market Segment Analysis
+  - [x] Insight 6: Customer Type Analysis
+  - [x] Insight 7: Model Performance Insights
+  - [x] Insight 8: Booking Trend Analysis
+  - [x] Insight 9: Special Requests Impact
+- [x] **Export outputs:**
+  - [x] Lưu figures vào `outputs/figures/`
+  - [x] Lưu tables vào `outputs/tables/`
+  - [x] Lưu reports vào `outputs/reports/`
+
+### 8.4. Summary Results
+| Phase | Best Model | Metric | Score |
+|-------|------------|--------|-------|
+| **Supervised** | Random Forest (Tuned) | F1-Score | **0.8010** |
+| **Semi-Supervised** | Supervised (10% labeled) | F1-Score | 0.6817 |
+| **Time Series** | MA(6) | MAPE | **10.39%** |
+
+### 8.5. Output Files ✅
+- [x] `outputs/figures/supervised_comparison_bar.png`
+- [x] `outputs/figures/supervised_comparison_radar.png`
+- [x] `outputs/figures/model_ranking_f1.png`
+- [x] `outputs/figures/confusion_matrix_best_model.png`
+- [x] `outputs/figures/error_distribution.png`
+- [x] `outputs/figures/feature_importance_top15.png`
+- [x] `outputs/figures/cumulative_importance.png`
+- [x] `outputs/figures/lead_time_analysis.png`
+- [x] `outputs/figures/monthly_trend.png`
+- [x] `outputs/figures/cancellation_by_deposit.png`
+- [x] `outputs/figures/cancellation_by_segment.png`
+- [x] `outputs/figures/cancellation_by_customer.png`
+- [x] `outputs/figures/summary_dashboard.png`
+- [x] `outputs/tables/project_summary.csv`
+- [x] `outputs/reports/business_insights.json`
+- [x] `outputs/reports/business_insights.md`
+- [x] `outputs/reports/summary_report.md`
+- [x] `outputs/reports/full_report.md`
+- [x] `outputs/reports/supervised_results.csv`
+- [x] `outputs/reports/semi_supervised_results.csv`
+- [x] `outputs/reports/time_series_results.csv`
+- [x] `outputs/reports/feature_importance.csv`
 
 ---
 
