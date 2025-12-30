@@ -6,9 +6,6 @@ Usage:
     python scripts/run_papermill.py --all           # Chạy tất cả notebooks
     python scripts/run_papermill.py --notebook 01   # Chạy notebook cụ thể
     python scripts/run_papermill.py --list          # Liệt kê notebooks
-
-Requirements:
-    pip install papermill
 """
 
 import os

@@ -14,8 +14,6 @@ Các hàm chính:
 - evaluate_clustering: Đánh giá kết quả phân cụm
 - profile_clusters: Phân tích đặc điểm từng cụm
 - visualize_clusters: Trực quan hóa cụm (PCA/t-SNE)
-
-Yêu cầu: scikit-learn (pip install scikit-learn)
 """
 
 import pandas as pd

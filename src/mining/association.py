@@ -13,8 +13,6 @@ Các hàm chính:
 - filter_rules_by_consequent: Lọc luật theo vế phải
 - compare_rules_by_group: So sánh luật giữa các nhóm
 - visualize_rules: Trực quan hóa luật kết hợp
-
-Yêu cầu: mlxtend (pip install mlxtend)
 """
 
 import pandas as pd
