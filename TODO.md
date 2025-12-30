@@ -135,16 +135,17 @@
   - [x] Pipeline hoàn chỉnh (`clean_data()`)
   - [x] Save/load artifacts (`save_artifacts()`, `load_artifacts()`)
 
-### 3.2. Tạo module features
-- [ ] `src/features/__init__.py`
-- [ ] `src/features/builder.py`
-  - [ ] Rời rạc hoá `lead_time` (bins: short/medium/long)
-  - [ ] Rời rạc hoá `country` (top countries + others)
-  - [ ] Tạo feature `total_guests` = adults + children + babies
-  - [ ] Tạo feature `total_nights` = stays_in_weekend_nights + stays_in_week_nights
-  - [ ] Tạo feature `is_repeated_guest_and_canceled_before`
-  - [ ] Tạo feature theo mùa từ arrival_date_month
-  - [ ] Feature cho association rules (one-hot encoding)
+### 3.2. Tạo module features ✅
+- [x] `src/features/__init__.py`
+- [x] `src/features/builder.py`
+  - [x] Rời rạc hoá `lead_time` (`discretize_lead_time()`)
+  - [x] Rời rạc hoá `country` (`discretize_country()`)
+  - [x] Tạo feature `total_guests` = adults + children + babies
+  - [x] Tạo feature `total_nights` = stays_in_weekend_nights + stays_in_week_nights
+  - [x] Tạo feature `is_repeated_guest_and_canceled_before` (`repeated_and_canceled_before`)
+  - [x] Tạo feature theo mùa từ arrival_date_month (`create_season_features()`)
+  - [x] Feature cho association rules (`prepare_for_association_rules()`)
+  - [x] Thêm nhiều features khác: revenue, booking, room, guest history
 
 ### 3.3. Notebook 02_preprocess_feature.ipynb
 - [ ] Tạo notebook `notebooks/02_preprocess_feature.ipynb`
