@@ -125,13 +125,15 @@
 
 ## 🟡 PHASE 3: TIỀN XỬ LÝ & FEATURE ENGINEERING
 
-### 3.1. Tạo module cleaner
-- [ ] `src/data/cleaner.py`
-  - [ ] Hàm xử lý missing values
-  - [ ] Hàm xử lý outliers
-  - [ ] Hàm loại bỏ cột leakage
-  - [ ] Hàm encoding categorical variables
-  - [ ] Hàm scaling numerical features
+### 3.1. Tạo module cleaner ✅
+- [x] `src/data/cleaner.py`
+  - [x] Hàm xử lý missing values (`handle_missing_values()`)
+  - [x] Hàm xử lý outliers (`handle_outliers()`, `handle_adr_outliers()`)
+  - [x] Hàm loại bỏ cột leakage (`drop_leakage_columns()`)
+  - [x] Hàm encoding categorical variables (`encode_categorical()`)
+  - [x] Hàm scaling numerical features (`scale_numerical()`)
+  - [x] Pipeline hoàn chỉnh (`clean_data()`)
+  - [x] Save/load artifacts (`save_artifacts()`, `load_artifacts()`)
 
 ### 3.2. Tạo module features
 - [ ] `src/features/__init__.py`
