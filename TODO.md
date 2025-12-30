@@ -239,31 +239,31 @@
 
 ---
 
-## 🟣 PHASE 6: BÁN GIÁM SÁT (SEMI-SUPERVISED)
+## 🟣 PHASE 6: BÁN GIÁM SÁT (SEMI-SUPERVISED) ✅
 
-### 6.1. Tạo module semi-supervised
-- [ ] `src/models/semi_supervised.py`
-  - [ ] Hàm tạo labeled/unlabeled split (5%, 10%, 20% labeled)
-  - [ ] Hàm Self-Training với threshold cao
-  - [ ] Hàm Label Propagation
-  - [ ] Hàm Label Spreading
-  - [ ] Hàm phân tích pseudo-label errors
+### 6.1. Tạo module semi-supervised ✅
+- [x] `src/models/semi_supervised.py`
+  - [x] Hàm tạo labeled/unlabeled split (5%, 10%, 20% labeled)
+  - [x] Hàm Self-Training với threshold cao (0.9, 0.95)
+  - [x] Hàm Label Propagation
+  - [x] Hàm Label Spreading
+  - [x] Hàm phân tích pseudo-label errors
 
-### 6.2. Notebook 04b_semi_supervised.ipynb
-- [ ] Tạo notebook `notebooks/04b_semi_supervised.ipynb`
-- [ ] **Kịch bản thiếu nhãn:**
-  - [ ] Giữ 5% labeled → train supervised vs semi-supervised
-  - [ ] Giữ 10% labeled → train supervised vs semi-supervised
-  - [ ] Giữ 20% labeled → train supervised vs semi-supervised
-- [ ] **So sánh:**
-  - [ ] Supervised-only với ít nhãn
-  - [ ] Self-training (ngưỡng confidence 0.9, 0.95)
-  - [ ] Label Spreading
-- [ ] **Phân tích:**
-  - [ ] Learning curve theo % nhãn
-  - [ ] Phân tích pseudo-label sai theo lead_time dài
-  - [ ] Confusion matrix của pseudo-labels
-  - [ ] Bảng so sánh F1/PR-AUC
+### 6.2. Notebook 04b_semi_supervised.ipynb ✅
+- [x] Tạo notebook `notebooks/04b_semi_supervised.ipynb`
+- [x] **Kịch bản thiếu nhãn:**
+  - [x] Giữ 5% labeled → train supervised vs semi-supervised
+  - [x] Giữ 10% labeled → train supervised vs semi-supervised
+  - [x] Giữ 20% labeled → train supervised vs semi-supervised
+- [x] **So sánh:**
+  - [x] Supervised-only với ít nhãn
+  - [x] Self-training (ngưỡng confidence 0.9, 0.95)
+  - [x] Label Spreading
+- [x] **Phân tích:**
+  - [x] Learning curve theo % nhãn
+  - [x] Phân tích pseudo-label sai theo lead_time dài
+  - [x] Confusion matrix của pseudo-labels
+  - [x] Bảng so sánh F1/PR-AUC
 
 ---
 
