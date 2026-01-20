@@ -46,10 +46,10 @@ env/
 .spyproject
 
 # ----- Data Files (Large) -----
-# Uncomment if data is too large for git
+# Raw data - keep in git for reproducibility (small enough)
 # data/raw/*.csv
 # data/raw/*.xlsx
-# data/processed/*.csv
+data/processed/*.csv
 # data/processed/*.parquet
 
 # ----- Model Files -----
@@ -78,7 +78,11 @@ desktop.ini
 # ----- Logs -----
 *.log
 logs/
+outputs/logs/
 *.out
+
+# ----- EDA Summary (duplicate) -----
+outputs/eda_summary.txt
 
 # ----- Temporary Files -----
 *.tmp

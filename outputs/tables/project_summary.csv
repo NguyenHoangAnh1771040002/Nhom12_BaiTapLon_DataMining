@@ -1,0 +1,4 @@
+Phase,Best Model,Primary Metric,Best Score,Task
+Supervised Learning,Random Forest (Tuned),F1-Score,0.8010,Classification
+Semi-Supervised,Self-Training (20%),F1-Score,0.6817,Classification
+Time Series,MA(6),MAPE,10.39%,Forecasting

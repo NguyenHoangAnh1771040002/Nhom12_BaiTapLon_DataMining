@@ -1,0 +1,62 @@
+{
+  "random_operations": {
+    "consistent": true,
+    "results": {
+      "numpy_random": [
+        5.201367359526748,
+        5.201367359526748,
+        5.201367359526748
+      ],
+      "sklearn_split": [
+        890,
+        890,
+        890
+      ],
+      "pandas_sample": [
+        446,
+        446,
+        446
+      ]
+    }
+  },
+  "model_training": {
+    "consistent": true,
+    "results": {
+      "scores": [
+        0.91,
+        0.91,
+        0.91
+      ],
+      "feature_importances": [
+        0.2285778476846099,
+        0.2285778476846099,
+        0.2285778476846099
+      ]
+    }
+  },
+  "pipeline_runs": {
+    "run1": {
+      "f1_score": 0.8034966308504826,
+      "accuracy": 0.8644358824022113,
+      "feature_importance_sum": 0.4514299493502171,
+      "status": "success"
+    },
+    "run2": {
+      "f1_score": 0.8034966308504826,
+      "accuracy": 0.8644358824022113,
+      "feature_importance_sum": 0.4514299493502171,
+      "status": "success"
+    },
+    "match": true
+  },
+  "file_hashes": {
+    "tables/model_comparison.csv": "7c8dae5bdd3d2cc2c8e7c1f9b59403a1",
+    "tables/ts_model_comparison.csv": "f74f3d2eaf776e0e0e1217a7044929e2",
+    "tables/project_summary.csv": "9bfdfaba9ff8cc30d2e2e74178a513c7",
+    "models/best_model.pkl": "d3ea721ecf73303070a36b69acce4475",
+    "reports/full_report.md": "61c07ec57828e53f235454c1a75f6a52",
+    "reports/summary_report.md": "4906d58e2a1cc173db3374d75a6cac19",
+    "reports/business_insights.json": "954376f36df3e7eeb14cbfcd093596c2"
+  },
+  "all_passed": true
+}

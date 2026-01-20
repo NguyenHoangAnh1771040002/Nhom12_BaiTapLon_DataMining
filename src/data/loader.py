@@ -1,15 +1,15 @@
 """
-Data Loader Module
-==================
+Module Đọc Dữ Liệu (Data Loader)
+================================
 
-Utilities for loading and validating hotel booking data.
+Các hàm tiện ích để đọc và kiểm tra dữ liệu đặt phòng khách sạn.
 
-Functions:
-----------
-- load_raw_data: Load raw CSV data from file
-- load_processed_data: Load processed data
-- validate_schema: Validate dataframe schema
-- get_data_info: Get summary information about data
+Các hàm chính:
+--------------
+- load_raw_data: Đọc dữ liệu CSV gốc từ file
+- load_processed_data: Đọc dữ liệu đã xử lý
+- validate_schema: Kiểm tra cấu trúc dataframe
+- get_data_info: Lấy thông tin tổng quan về dữ liệu
 """
 
 import pandas as pd

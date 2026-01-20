@@ -1,41 +1,42 @@
 
-# EDA Summary - Hotel Booking Cancellation Prediction
-Generated: 2025-12-30 15:20:39
+# TÓM TẮT PHÂN TÍCH KHÁM PHÁ DỮ LIỆU (EDA Summary)
+# Dự Đoán Huỷ Đặt Phòng Khách Sạn - Hotel Booking Cancellation Prediction
+# Tạo ngày: 2025-12-30 15:20:39
 
-## Dataset Overview
-- Records: 119,390
-- Features: 32
-- Target: is_canceled (Binary: 0/1)
-- Cancellation Rate: 37.04%
+## TỔNG QUAN DỮ LIỆU (Dataset Overview)
+- Số bản ghi (Records): 119,390
+- Số đặc trưng (Features): 32
+- Biến mục tiêu (Target): is_canceled (Nhị phân: 0/1)
+- Tỷ lệ huỷ (Cancellation Rate): 37.04%
 
-## Data Quality Issues
-1. Missing Values:
-   - company: 94.31% → Drop or create flag
-   - agent: 13.69% → Impute with 0 (no agent)
-   - country: 0.41% → Impute with mode
-   - children: 0.00% (4 rows) → Impute with 0
+## VẤN ĐỀ CHẤT LƯỢNG DỮ LIỆU (Data Quality Issues)
+1. Giá trị thiếu (Missing Values):
+   - company: 94.31% → Loại bỏ hoặc tạo biến flag
+   - agent: 13.69% → Thay bằng 0 (không có đại lý)
+   - country: 0.41% → Thay bằng mode
+   - children: 0.00% (4 dòng) → Thay bằng 0
 
-2. Data Leakage:
-   - MUST DROP: reservation_status, reservation_status_date
+2. Rò rỉ dữ liệu (Data Leakage):
+   - BẮT BUỘC LOẠI BỎ: reservation_status, reservation_status_date
 
-3. Outliers:
-   - ADR has extreme values (max > 5000, negative values)
-   - lead_time has values up to 737 days
+3. Giá trị ngoại lai (Outliers):
+   - ADR có giá trị cực trị (max > 5000, có giá trị âm)
+   - lead_time có giá trị lên đến 737 ngày
 
-## Key Insights
-1. Lead Time: Strong positive correlation with cancellation
-2. Deposit Type: Non Refund has lowest cancel rate
-3. Market Segment: Online TA has highest cancel rate
-4. Special Requests: Negative correlation with cancellation
-5. Hotel Type: City Hotel has higher cancel rate than Resort
+## PHÁT HIỆN QUAN TRỌNG (Key Insights)
+1. Thời gian đặt trước (Lead Time): Tương quan dương mạnh với huỷ
+2. Loại đặt cọc (Deposit Type): Non Refund có tỷ lệ huỷ thấp nhất
+3. Phân khúc thị trường (Market Segment): Online TA có tỷ lệ huỷ cao nhất
+4. Yêu cầu đặc biệt (Special Requests): Tương quan âm với huỷ
+5. Loại khách sạn (Hotel Type): City Hotel có tỷ lệ huỷ cao hơn Resort
 
-## Recommended Features
-- lead_time
-- deposit_type
-- market_segment
-- previous_cancellations
-- total_of_special_requests
-- adr
-- customer_type
-- is_repeated_guest
-- Required feature engineering for temporal patterns
+## ĐẶC TRƯNG KHUYẾN NGHỊ (Recommended Features)
+- lead_time (Thời gian đặt trước)
+- deposit_type (Loại đặt cọc)
+- market_segment (Phân khúc thị trường)
+- previous_cancellations (Số lần huỷ trước)
+- total_of_special_requests (Số yêu cầu đặc biệt)
+- adr (Giá phòng trung bình/đêm)
+- customer_type (Loại khách hàng)
+- is_repeated_guest (Khách quen)
+- Cần kỹ thuật đặc trưng cho các pattern theo thời gian

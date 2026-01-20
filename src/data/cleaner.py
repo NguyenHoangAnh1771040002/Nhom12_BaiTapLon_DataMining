@@ -1,17 +1,17 @@
 """
-Data Cleaner Module
-===================
+Module Làm Sạch Dữ Liệu (Data Cleaner)
+======================================
 
-Utilities for cleaning and preprocessing hotel booking data.
+Các hàm tiện ích để làm sạch và tiền xử lý dữ liệu đặt phòng khách sạn.
 
-Functions:
-----------
-- drop_leakage_columns: Remove columns that cause data leakage
-- handle_missing_values: Handle missing values with various strategies
-- handle_outliers: Detect and handle outliers
-- encode_categorical: Encode categorical variables
-- scale_numerical: Scale numerical features
-- clean_data: Full cleaning pipeline
+Các hàm chính:
+--------------
+- drop_leakage_columns: Loại bỏ cột gây rò rỉ dữ liệu (data leakage)
+- handle_missing_values: Xử lý giá trị thiếu
+- handle_outliers: Phát hiện và xử lý giá trị ngoại lai (outliers)
+- encode_categorical: Mã hóa biến phân loại
+- scale_numerical: Chuẩn hóa đặc trưng số
+- clean_data: Pipeline làm sạch hoàn chỉnh
 """
 
 import pandas as pd
