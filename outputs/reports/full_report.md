@@ -1,118 +1,115 @@
-# Hotel Booking Cancellation Prediction
-## Final Report
+# Dự đoán Hủy Đặt Phòng Khách Sạn
+## Báo Cáo Cuối Cùng
 
-**Date:** 2026-01-20
-**Team:** Nhom12
-
----
-
-## Table of Contents
-
-1. [Introduction](#1-introduction)
-2. [Data Overview](#2-data-overview)
-3. [Methodology](#3-methodology)
-4. [Results](#4-results)
-5. [Business Insights](#5-business-insights)
-6. [Conclusion](#6-conclusion)
+**Ngày:** 2026-01-20
+**Nhóm:** Nhóm 12
 
 ---
 
-## 1. Introduction
+## Mục Lục
 
-This project aims to predict hotel booking cancellations using various 
-machine learning and data mining techniques. Accurate prediction of 
-cancellations can help hotels optimize their revenue management and 
-reduce losses from no-shows.
-
----
-
-## 2. Data Overview
-
-The dataset contains hotel booking records with features including:
-- Customer information (type, country, etc.)
-- Booking details (lead time, deposit, room type)
-- Stay information (duration, special requests)
-- Historical data (previous cancellations, bookings)
+1. [Giới Thiệu](#1-gioi-thieu)
+2. [Tổng Quan Dữ Liệu](#2-tong-quan-du-lieu)
+3. [Phương Pháp](#3-phuong-phap)
+4. [Kết Quả](#4-ket-qua)
+5. [Thông Tin Kinh Doanh](#5-thong-tin-kinh-doanh)
+6. [Kết Luận](#6-ket-luan)
 
 ---
 
-## 3. Methodology
+## 1. Giới Thiệu
 
-### 3.1 Data Preprocessing
-- Missing value handling
-- Feature engineering
-- Categorical encoding
-- Feature scaling
+Dự án này nhằm dự đoán việc hủy đặt phòng khách sạn bằng cách sử dụng các kỹ thuật học máy và khai phá dữ liệu khác nhau. Dự đoán chính xác việc hủy đặt phòng có thể giúp khách sạn tối ưu hóa quản lý doanh thu và giảm thiểu tổn thất từ việc khách không đến.
 
-### 3.2 Modeling Approaches
+---
+
+## 2. Tổng Quan Dữ Liệu
+
+Bộ dữ liệu chứa các bản ghi đặt phòng khách sạn với các đặc điểm bao gồm:
+- Thông tin khách hàng (loại, quốc gia, v.v.)
+- Chi tiết đặt phòng (thời gian đặt trước, tiền đặt cọc, loại phòng)
+- Thông tin lưu trú (thời gian lưu trú, yêu cầu đặc biệt)
+- Dữ liệu lịch sử (hủy trước đó, số lần đặt phòng)
+
+---
+
+## 3. Phương Pháp
+
+### 3.1 Tiền Xử Lý Dữ Liệu
+- Xử lý giá trị thiếu
+- Kỹ thuật tạo đặc trưng
+- Mã hóa dữ liệu phân loại
+- Chuẩn hóa đặc trưng
+
+### 3.2 Các Phương Pháp Mô Hình Hóa
 
 
-#### Supervised Learning
-- Logistic Regression
-- Decision Tree
-- Random Forest
+#### Học Có Giám Sát
+- Hồi Quy Logistic
+- Cây Quyết Định
+- Rừng Ngẫu Nhiên
 - XGBoost
 - LightGBM
 
 
-#### Semi-Supervised Learning
-- Label Spreading
-- Label Propagation
-- Self-Training
+#### Học Bán Giám Sát
+- Lan Truyền Nhãn
+- Lan Truyền Nhãn (Label Propagation)
+- Tự Huấn Luyện
 
 
-#### Time Series Forecasting
+#### Dự Báo Chuỗi Thời Gian
 - ARIMA / SARIMA
-- Exponential Smoothing
-- Moving Average
+- Làm Mịn Số Mũ
+- Trung Bình Di Động
 
 
 ---
 
-## 4. Results
+## 4. Kết Quả
 
 
-### 4.1 Supervised Learning Results
+### 4.1 Kết Quả Học Có Giám Sát
 
-|                       |   accuracy |   precision |   recall |     f1 |   roc_auc |   pr_auc |
+|                       |   Độ chính xác |   Độ chính xác (precision) |   Độ nhạy (recall) |     F1 |   ROC-AUC |   PR-AUC |
 |:----------------------|-----------:|------------:|---------:|-------:|----------:|---------:|
-| Random Forest (Tuned) |     0.8569 |      0.8275 |   0.7752 | 0.8005 |    0.9266 |   0.9029 |
+| Rừng Ngẫu Nhiên (Tuned) |     0.8569 |      0.8275 |   0.7752 | 0.8005 |    0.9266 |   0.9029 |
 | LightGBM              |     0.838  |      0.8154 |   0.7273 | 0.7689 |    0.9074 |   0.8797 |
 | XGBoost               |     0.8321 |      0.8013 |   0.727  | 0.7623 |    0.9028 |   0.874  |
-| Random Forest         |     0.8182 |      0.782  |   0.7063 | 0.7422 |    0.8963 |   0.8654 |
-| Decision Tree         |     0.8098 |      0.7794 |   0.6786 | 0.7255 |    0.8773 |   0.8283 |
-| Logistic Regression   |     0.7645 |      0.6777 |   0.6946 | 0.6861 |    0.8391 |   0.8018 |
+| Rừng Ngẫu Nhiên       |     0.8182 |      0.782  |   0.7063 | 0.7422 |    0.8963 |   0.8654 |
+| Cây Quyết Định        |     0.8098 |      0.7794 |   0.6786 | 0.7255 |    0.8773 |   0.8283 |
+| Hồi Quy Logistic      |     0.7645 |      0.6777 |   0.6946 | 0.6861 |    0.8391 |   0.8018 |
 
 
-### 4.2 Semi-Supervised Learning Results
+### 4.2 Kết Quả Học Bán Giám Sát
 
-|                 |   5% labeled |   10% labeled |   20% labeled |
+|                 |   5% nhãn |   10% nhãn |   20% nhãn |
 |:----------------|-------------:|--------------:|--------------:|
 | supervised      |     0.683049 |      0.679441 |      0.67982  |
 | self_training   |     0.679998 |      0.677886 |      0.679727 |
 | label_spreading |     0.461682 |      0.500565 |      0.543048 |
 
 
-### 4.3 Time Series Forecasting Results
+### 4.3 Kết Quả Dự Báo Chuỗi Thời Gian
 
-|                |       mae |      rmse |    mape |
+|                |       MAE |      RMSE |    MAPE |
 |:---------------|----------:|----------:|--------:|
 | MA(6)          | 0.0434209 | 0.0525686 | 10.3887 |
 | MA(3)          | 0.0567929 | 0.0675267 | 13.5033 |
 | ARIMA(1,1,1)   | 0.0704806 | 0.0809364 | 16.8906 |
 | Naive          | 0.0718262 | 0.0819441 | 17.2422 |
 | ARIMA(2,1,2)   | 0.0722673 | 0.0828468 | 17.3259 |
-| Exp. Smoothing | 0.0819577 | 0.0912376 | 19.8135 |
+| Làm Mịn Số Mũ  | 0.0819577 | 0.0912376 | 19.8135 |
 
 
-### 4.4 Best Model
+### 4.4 Mô Hình Tốt Nhất
 
-The best performing model is **Random Forest (Tuned)**.
+Mô hình có hiệu suất tốt nhất là **Rừng Ngẫu Nhiên (Tuned)**.
 
 
-### 4.5 Feature Importance
+### 4.5 Tầm Quan Trọng Của Đặc Trưng
 
-| feature                   |   importance |   importance_pct |   cumulative_pct |
+| Đặc trưng                  |   Tầm quan trọng |   Tỷ lệ phần trăm |   Tích lũy |
 |:--------------------------|-------------:|-----------------:|-----------------:|
 | deposit_required          |    0.203367  |         20.3367  |          20.3367 |
 | lead_time                 |    0.113319  |         11.3319  |          31.6686 |
@@ -133,94 +130,92 @@ The best performing model is **Random Forest (Tuned)**.
 
 ---
 
-## 5. Business Insights
+## 5. Thông Tin Kinh Doanh
 
 
-### 5.1 Overall Cancellation Rate
+### 5.1 Tỷ Lệ Hủy Đặt Phòng Tổng Thể
 
 **Tỷ lệ hủy đặt phòng tổng thể là 37.0%.**
 
-*Recommendation:* Cần có chiến lược chủ động để giảm tỷ lệ hủy đặt phòng.
+*Khuyến nghị:* Cần có chiến lược chủ động để giảm tỷ lệ hủy đặt phòng.
 
 
-### 5.2 Impact of Lead Time
+### 5.2 Ảnh Hưởng Của Lead Time
 
 **Đặt phòng với lead time > 100 ngày có tỷ lệ hủy 51.1%, trong khi lead time <= 30 ngày chỉ có 18.6%.**
 
-*Recommendation:* Áp dụng chính sách đặt cọc cao hơn cho đặt phòng có lead time dài.
+*Khuyến nghị:* Áp dụng chính sách đặt cọc cao hơn cho đặt phòng có lead time dài.
 
 
-### 5.3 Deposit Type Impact
+### 5.3 Ảnh Hưởng Của Loại Tiền Đặt Cọc
 
-**Tỷ lệ hủy theo loại deposit: No Deposit: 28.4%, Non Refund: 99.4%, Refundable: 22.2%.**
+**Tỷ lệ hủy theo loại deposit: Không đặt cọc: 28.4%, Không hoàn lại: 99.4%, Hoàn lại: 22.2%.**
 
-*Recommendation:* Khuyến khích khách hàng đặt cọc không hoàn lại để giảm tỷ lệ hủy.
+*Khuyến nghị:* Khuyến khích khách hàng đặt cọc không hoàn lại để giảm tỷ lệ hủy.
 
 
-### 5.4 Customer Type Risk
+### 5.4 Rủi Ro Theo Loại Khách Hàng
 
 **Nhóm khách hàng "Transient" có tỷ lệ hủy cao nhất (40.7%).**
 
-*Recommendation:* Tập trung chương trình loyalty cho nhóm "Transient" để giữ chân khách.
+*Khuyến nghị:* Tập trung chương trình loyalty cho nhóm "Transient" để giữ chân khách.
 
 
-### 5.5 High-Risk Segments
+### 5.5 Phân Khúc Rủi Ro Cao
 
 **Các phân khúc có rủi ro cao: Undefined (100.0%), Groups (61.1%).**
 
-*Recommendation:* Xem xét yêu cầu đặt cọc hoặc xác nhận bổ sung cho các phân khúc rủi ro cao.
+*Khuyến nghị:* Xem xét yêu cầu đặt cọc hoặc xác nhận bổ sung cho các phân khúc rủi ro cao.
 
 
-### 5.6 Previous Cancellation Pattern
+### 5.6 Mẫu Hủy Trước Đó
 
 **Khách có lịch sử hủy trước đó có tỷ lệ hủy 91.6%, so với 33.9% cho khách không có lịch sử hủy.**
 
-*Recommendation:* Áp dụng chính sách đặt phòng nghiêm ngặt hơn với khách có lịch sử hủy.
+*Khuyến nghị:* Áp dụng chính sách đặt phòng nghiêm ngặt hơn với khách có lịch sử hủy.
 
 
-### 5.7 Key Predictive Factors
+### 5.7 Các Yếu Tố Dự Đoán Quan Trọng
 
 **Các yếu tố dự đoán hủy quan trọng nhất: deposit_required, lead_time, agent, has_special_requests, room_type_changed.**
 
-*Recommendation:* Tập trung thu thập và phân tích các yếu tố này để cải thiện dự đoán.
+*Khuyến nghị:* Tập trung thu thập và phân tích các yếu tố này để cải thiện dự đoán.
 
 
-### 5.8 Best Prediction Model
+### 5.8 Mô Hình Dự Đoán Tốt Nhất
 
-**Mô hình Random Forest (Tuned) đạt hiệu suất cao nhất với F1-score = 0.8005.**
+**Mô hình Rừng Ngẫu Nhiên (Tuned) đạt hiệu suất cao nhất với F1-score = 0.8005.**
 
-*Recommendation:* Deploy mô hình này vào hệ thống để dự đoán và can thiệp sớm.
+*Khuyến nghị:* Deploy mô hình này vào hệ thống để dự đoán và can thiệp sớm.
 
 
-### 5.9 Seasonal Cancellation Patterns
+### 5.9 Mẫu Hủy Theo Mùa
 
-**Các tháng có tỷ lệ hủy cao: June (41.5%), April (40.8%), May (39.7%).**
+**Các tháng có tỷ lệ hủy cao: Tháng 6 (41.5%), Tháng 4 (40.8%), Tháng 5 (39.7%).**
 
-*Recommendation:* Điều chỉnh chính sách đặt phòng và overbooking theo mùa.
+*Khuyến nghị:* Điều chỉnh chính sách đặt phòng và overbooking theo mùa.
 
 
 ---
 
-## 6. Conclusion
+## 6. Kết Luận
 
-This project successfully developed a predictive model for hotel booking 
-cancellations. The Random Forest (Tuned) model achieved strong 
-performance and provides actionable insights for hotel management.
+Dự án này đã phát triển thành công một mô hình dự đoán việc hủy đặt phòng khách sạn. Mô hình Rừng Ngẫu Nhiên (Tuned) đạt hiệu suất cao và cung cấp các thông tin hữu ích cho quản lý khách sạn.
 
-### Key Takeaways
+### Điểm Chính
 
-1. Lead time is a strong predictor of cancellation
-2. Deposit type significantly affects cancellation rates
-3. Customer booking history provides valuable signals
-4. Seasonal patterns exist in cancellation rates
+1. Lead time là yếu tố dự đoán mạnh mẽ cho việc hủy đặt phòng
+2. Loại tiền đặt cọc ảnh hưởng đáng kể đến tỷ lệ hủy
+3. Lịch sử đặt phòng của khách hàng cung cấp tín hiệu giá trị
+4. Có các mẫu hủy theo mùa
 
-### Recommendations
+### Khuyến Nghị
 
-1. Implement risk-based deposit policies
-2. Use predictive scoring for early intervention
-3. Monitor and retrain models regularly
-4. A/B test intervention strategies
+1. Thực hiện các chính sách đặt cọc dựa trên rủi ro
+2. Sử dụng điểm dự đoán để can thiệp sớm
+3. Theo dõi và huấn luyện lại mô hình thường xuyên
+4. Thử nghiệm A/B các chiến lược can thiệp
 
 ---
 
-*Report generated by Nhom12 Data Mining Project*
+*Báo cáo được tạo bởi Nhóm 12 Dự Án Khai Phá Dữ Liệu*

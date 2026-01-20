@@ -292,7 +292,6 @@ streamlit run app/streamlit_app.py
 - `outputs/models/logistic_regression.joblib`
 
 ### 📝 Báo cáo
-- `outputs/reports/final_report.md` - Báo cáo đầy đủ
 - `outputs/reports/business_insights.json` - Thông tin kinh doanh (JSON)
 
 ---
