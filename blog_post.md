@@ -1,14 +1,10 @@
 # 🏨 Dự Đoán Huỷ Đặt Phòng Khách Sạn Với Học Máy
 ## Ứng Dụng Khai Phá Dữ Liệu Trong Ngành Khách Sạn
 
-![Bảng tổng hợp kết quả](../figures/summary_dashboard.png)
+![Bảng tổng hợp kết quả](outputs/figures/summary_dashboard.png)
 
 ---
-
-**📅 Ngày đăng:** 30/12/2025  
 **👥 Tác giả:** Nhóm 12 - Lớp Khai phá Dữ liệu  
-**🏫 Trường:** Đại học Sư phạm Kỹ thuật TP.HCM
-
 ---
 
 ## 📌 Mục lục
@@ -32,13 +28,13 @@ Trong ngành khách sạn, **huỷ đặt phòng** là một vấn đề nan gi�
 
 - 💸 **Mất doanh thu trực tiếp** khi phòng trống không có khách
 - 📊 **Khó quản lý công suất** do không biết chính xác số lượng đặt phòng thực tế
-- 💰 **Ảnh hưởng chiến lược giá** và việc đặt quá số phòng (overbooking)
+- 💰 **Ảnh hưởng chiến lược giá** và việc đặt quá số phòng
 
-> **Mục tiêu:** Xây dựng mô hình Học máy (Machine Learning) dự đoán đặt phòng nào có khả năng bị huỷ, từ đó đưa ra các chiến lược phòng ngừa hiệu quả.
+> **Mục tiêu:** Xây dựng mô hình Học máy dự đoán đặt phòng nào có khả năng bị huỷ, từ đó đưa ra các chiến lược phòng ngừa hiệu quả.
 
 ### 📊 Bộ dữ liệu
 
-Chúng tôi sử dụng bộ dữ liệu **Nhu cầu đặt phòng khách sạn** (Hotel Booking Demand) từ Kaggle với:
+Chúng tôi sử dụng bộ dữ liệu **Nhu cầu đặt phòng khách sạn** từ Kaggle với:
 
 | Thông tin | Giá trị |
 |-----------|---------|
@@ -56,13 +52,13 @@ Chúng tôi sử dụng bộ dữ liệu **Nhu cầu đặt phòng khách sạn*
 
 ### 2.1. Phân bố nhãn mục tiêu
 
-![Phân bố biến mục tiêu](../figures/target_distribution.png)
+![Phân bố biến mục tiêu](outputs/figures/target_distribution.png)
 
 Bộ dữ liệu có tỷ lệ huỷ **37,04%** - đây là tỷ lệ khá cao và cũng tương đối cân bằng (không quá mất cân bằng), giúp việc huấn luyện mô hình thuận lợi hơn.
 
-### 2.2. Giá trị thiếu (Missing Values)
+### 2.2. Giá trị thiếu
 
-![Giá trị thiếu](../figures/missing_values.png)
+![Giá trị thiếu](outputs/figures/missing_values.png)
 
 Các cột có giá trị thiếu đáng kể:
 - `company` (công ty): 94,3% thiếu → chuyển thành danh mục "không có công ty"
@@ -71,17 +67,17 @@ Các cột có giá trị thiếu đáng kể:
 
 ### 2.3. Phân tích theo loại khách sạn
 
-![Tỷ lệ huỷ theo loại khách sạn](../figures/hotel_type_cancellation.png)
+![Tỷ lệ huỷ theo loại khách sạn](outputs/figures/hotel_type_cancellation.png)
 
-**Khách sạn thành phố (City Hotel)** có tỷ lệ huỷ cao hơn đáng kể so với **Khu nghỉ dưỡng (Resort Hotel)**:
+**Khách sạn thành phố** có tỷ lệ huỷ cao hơn đáng kể so với **Khu nghỉ dưỡng**:
 - Khách sạn thành phố: ~42% tỷ lệ huỷ
 - Khu nghỉ dưỡng: ~28% tỷ lệ huỷ
 
 ### 2.4. Thời gian đặt trước - Yếu tố quan trọng nhất
 
-![Phân tích thời gian đặt trước](../figures/lead_time_analysis.png)
+![Phân tích thời gian đặt trước](outputs/figures/lead_time_analysis.png)
 
-**Thời gian đặt trước (Lead time)** - số ngày từ khi đặt đến ngày nhận phòng - là một trong những đặc trưng quan trọng nhất:
+**Thời gian đặt trước** - số ngày từ khi đặt đến ngày nhận phòng - là một trong những đặc trưng quan trọng nhất:
 
 - Đặt phòng **>100 ngày** trước có tỷ lệ huỷ **>50%**
 - Đặt phòng **<7 ngày** trước có tỷ lệ huỷ thấp nhất (~20%)
@@ -90,9 +86,9 @@ Các cột có giá trị thiếu đáng kể:
 
 ### 2.5. Ảnh hưởng của loại đặt cọc
 
-![Tỷ lệ huỷ theo loại đặt cọc](../figures/cancellation_by_deposit.png)
+![Tỷ lệ huỷ theo loại đặt cọc](outputs/figures/cancellation_by_deposit.png)
 
-**Loại đặt cọc (Deposit type)** có ảnh hưởng mạnh nhất đến quyết định huỷ:
+**Loại đặt cọc** có ảnh hưởng mạnh nhất đến quyết định huỷ:
 
 | Loại đặt cọc | Tỷ lệ huỷ |
 |--------------|-----------|
@@ -104,7 +100,7 @@ Các cột có giá trị thiếu đáng kể:
 
 ### 2.6. Phân khúc thị trường
 
-![Tỷ lệ huỷ theo phân khúc](../figures/cancellation_by_segment.png)
+![Tỷ lệ huỷ theo phân khúc](outputs/figures/cancellation_by_segment.png)
 
 - **Đại lý du lịch trực tuyến (Online TA)**: Tỷ lệ huỷ cao nhất
 - **Đặt trực tiếp (Direct)**: Tỷ lệ huỷ thấp hơn
@@ -112,13 +108,13 @@ Các cột có giá trị thiếu đáng kể:
 
 ### 2.7. Loại khách hàng
 
-![Tỷ lệ huỷ theo loại khách](../figures/cancellation_by_customer.png)
+![Tỷ lệ huỷ theo loại khách](outputs/figures/cancellation_by_customer.png)
 
-**Khách quen (Repeated guests)** có tỷ lệ huỷ thấp hơn đáng kể so với **khách mới (first-time guests)**.
+**Khách quen** có tỷ lệ huỷ thấp hơn đáng kể so với **khách mới**.
 
 ### 2.8. Xu hướng theo tháng
 
-![Xu hướng theo tháng](../figures/monthly_trend.png)
+![Xu hướng theo tháng](outputs/figures/monthly_trend.png)
 
 Tỷ lệ huỷ có xu hướng biến động theo mùa:
 - **Mùa cao điểm** (hè): Số đặt phòng tăng, tỷ lệ huỷ cũng tăng
@@ -126,7 +122,7 @@ Tỷ lệ huỷ có xu hướng biến động theo mùa:
 
 ### 2.9. Phát hiện rò rỉ dữ liệu
 
-![Phát hiện rò rỉ dữ liệu](../figures/leakage_detection.png)
+![Phát hiện rò rỉ dữ liệu](outputs/figures/leakage_detection.png)
 
 Chúng tôi phát hiện và loại bỏ các đặc trưng gây **rò rỉ dữ liệu (data leakage)**:
 - `reservation_status` (trạng thái đặt phòng): Trực tiếp tiết lộ kết quả (Đã huỷ/Đã nhận phòng)
@@ -142,13 +138,13 @@ Chúng tôi phát hiện và loại bỏ các đặc trưng gây **rò rỉ dữ
 
 Sử dụng thuật toán **Apriori** và **FP-Growth** để tìm các luật kết hợp liên quan đến việc huỷ đặt phòng.
 
-![Biểu đồ phân tán luật kết hợp](../figures/association_rules_scatter.png)
+![Biểu đồ phân tán luật kết hợp](outputs/figures/association_rules_scatter.png)
 
 Biểu đồ thể hiện mối quan hệ giữa **Độ hỗ trợ (Support)**, **Độ tin cậy (Confidence)** và **Độ nâng (Lift)** của các luật được phát hiện.
 
 ### 3.2. Bản đồ nhiệt các luật quan trọng
 
-![Bản đồ nhiệt luật huỷ phòng](../figures/cancellation_rules_heatmap.png)
+![Bản đồ nhiệt luật huỷ phòng](outputs/figures/cancellation_rules_heatmap.png)
 
 **Các luật kết hợp hàng đầu:**
 
@@ -168,19 +164,19 @@ Biểu đồ thể hiện mối quan hệ giữa **Độ hỗ trợ (Support)**,
 
 ### 4.1. Xác định số cụm tối ưu
 
-![Số cụm tối ưu](../figures/clustering_optimal_k.png)
+![Số cụm tối ưu](outputs/figures/clustering_optimal_k.png)
 
 Sử dụng phương pháp **Khuỷu tay (Elbow)** và **Điểm Silhouette** để xác định số cụm tối ưu: **K = 4**
 
 ### 4.2. Kết quả phân cụm KMeans
 
-![Phân cụm KMeans trên PCA](../figures/kmeans_clusters_pca.png)
+![Phân cụm KMeans trên PCA](outputs/figures/kmeans_clusters_pca.png)
 
 Trực quan hóa 4 cụm khách hàng trên không gian PCA 2 chiều:
 
 ### 4.3. Hồ sơ các cụm
 
-![Hồ sơ các cụm](../figures/kmeans_cluster_profiles.png)
+![Hồ sơ các cụm](outputs/figures/kmeans_cluster_profiles.png)
 
 **Đặc điểm từng cụm:**
 
@@ -191,13 +187,13 @@ Trực quan hóa 4 cụm khách hàng trên không gian PCA 2 chiều:
 | **2** | Khách đặt dài hạn, qua đại lý trực tuyến | **~58%** ⚠️ |
 | **3** | Khách quen, có đặt cọc | ~18% |
 
-![Tỷ lệ huỷ theo cụm](../figures/kmeans_cancellation_by_cluster.png)
+![Tỷ lệ huỷ theo cụm](outputs/figures/kmeans_cancellation_by_cluster.png)
 
 > 💡 **Phát hiện:** Cụm 2 là nhóm khách hàng rủi ro cao nhất - cần có chiến lược đặc biệt
 
 ### 4.4. Phân cụm phân cấp
 
-![Phân cụm phân cấp](../figures/hierarchical_clusters_pca.png)
+![Phân cụm phân cấp](outputs/figures/hierarchical_clusters_pca.png)
 
 So sánh với **Phân cụm phân cấp (Hierarchical Clustering)** cho kết quả tương tự, khẳng định tính ổn định của phân cụm.
 
@@ -209,7 +205,7 @@ So sánh với **Phân cụm phân cấp (Hierarchical Clustering)** cho kết q
 
 ### 5.1. So sánh các mô hình
 
-![So sánh mô hình](../figures/model_comparison.png)
+![So sánh mô hình](outputs/figures/model_comparison.png)
 
 Chúng tôi thử nghiệm 6 mô hình phân loại:
 
@@ -224,7 +220,7 @@ Chúng tôi thử nghiệm 6 mô hình phân loại:
 
 ### 5.2. Xếp hạng mô hình
 
-![Xếp hạng theo F1](../figures/model_ranking_f1.png)
+![Xếp hạng theo F1](outputs/figures/model_ranking_f1.png)
 
 **🏆 Mô hình tốt nhất: Rừng ngẫu nhiên (Random Forest) đã tinh chỉnh**
 - Điểm F1: **0,801**
@@ -232,39 +228,39 @@ Chúng tôi thử nghiệm 6 mô hình phân loại:
 
 ### 5.3. Biểu đồ radar so sánh
 
-![Biểu đồ radar so sánh](../figures/supervised_comparison_radar.png)
+![Biểu đồ radar so sánh](outputs/figures/supervised_comparison_radar.png)
 
 ### 5.4. Ma trận nhầm lẫn
 
 #### Mô hình tốt nhất - Rừng ngẫu nhiên (Tinh chỉnh)
 
-![Ma trận nhầm lẫn mô hình tốt nhất](../figures/confusion_matrix_best_model.png)
+![Ma trận nhầm lẫn mô hình tốt nhất](outputs/figures/confusion_matrix_best_model.png)
 
 #### Các mô hình khác
 
 | Hồi quy Logistic | Cây quyết định |
 |:----------------:|:--------------:|
-| ![Ma trận LR](../figures/cm_logistic_regression.png) | ![Ma trận DT](../figures/cm_decision_tree.png) |
+| ![Ma trận LR](outputs/figures/cm_logistic_regression.png) | ![Ma trận DT](outputs/figures/cm_decision_tree.png) |
 
 | Rừng ngẫu nhiên | XGBoost | LightGBM |
 |:---------------:|:-------:|:--------:|
-| ![Ma trận RF](../figures/cm_random_forest.png) | ![Ma trận XGB](../figures/cm_xgboost.png) | ![Ma trận LGB](../figures/cm_lightgbm.png) |
+| ![Ma trận RF](outputs/figures/cm_random_forest.png) | ![Ma trận XGB](outputs/figures/cm_xgboost.png) | ![Ma trận LGB](outputs/figures/cm_lightgbm.png) |
 
 ### 5.5. Đường cong ROC
 
-![So sánh đường cong ROC](../figures/roc_curves_comparison.png)
+![So sánh đường cong ROC](outputs/figures/roc_curves_comparison.png)
 
 Tất cả mô hình tổ hợp (Rừng ngẫu nhiên, XGBoost, LightGBM) đều có ROC-AUC > 0,9, thể hiện khả năng phân loại tốt.
 
 ### 5.6. Đường cong Precision-Recall
 
-![So sánh đường cong PR](../figures/pr_curves_comparison.png)
+![So sánh đường cong PR](outputs/figures/pr_curves_comparison.png)
 
 Đường cong PR quan trọng với bài toán mất cân bằng - Rừng ngẫu nhiên tinh chỉnh cho kết quả tốt nhất.
 
 ### 5.7. Độ quan trọng đặc trưng
 
-![Top 15 đặc trưng quan trọng](../figures/feature_importance_top15.png)
+![Top 15 đặc trưng quan trọng](outputs/figures/feature_importance_top15.png)
 
 **Top 5 đặc trưng quan trọng nhất:**
 
@@ -276,23 +272,23 @@ Tất cả mô hình tổ hợp (Rừng ngẫu nhiên, XGBoost, LightGBM) đều
 
 #### Độ quan trọng đặc trưng - Rừng ngẫu nhiên
 
-![Độ quan trọng đặc trưng RF](../figures/feature_importance_rf.png)
+![Độ quan trọng đặc trưng RF](outputs/figures/feature_importance_rf.png)
 
 #### Độ quan trọng tích luỹ
 
-![Độ quan trọng tích luỹ](../figures/cumulative_importance.png)
+![Độ quan trọng tích luỹ](outputs/figures/cumulative_importance.png)
 
 > 💡 **Phát hiện:** Top 10 đặc trưng đóng góp ~75% sức mạnh dự đoán
 
 ### 5.8. Phân tích ngưỡng quyết định
 
-![Phân tích ngưỡng](../figures/threshold_analysis.png)
+![Phân tích ngưỡng](outputs/figures/threshold_analysis.png)
 
 Phân tích ngưỡng quyết định để tối ưu sự đánh đổi giữa Độ chính xác dương và Độ nhạy theo nhu cầu kinh doanh.
 
 ### 5.9. Phân tích lỗi
 
-![Phân bố lỗi](../figures/error_distribution.png)
+![Phân bố lỗi](outputs/figures/error_distribution.png)
 
 Phân tích các trường hợp dự đoán sai để hiểu hạn chế của mô hình.
 
@@ -317,15 +313,15 @@ Phương pháp: **Tự huấn luyện (Self-Training)** và **Lan truyền nhãn
 
 ### 6.3. Kết quả
 
-![So sánh học bán giám sát](../figures/semi_supervised_comparison.png)
+![So sánh học bán giám sát](outputs/figures/semi_supervised_comparison.png)
 
 ### 6.4. Đường cong học tập
 
-![Đường cong học tập bán giám sát](../figures/semi_supervised_learning_curve.png)
+![Đường cong học tập bán giám sát](outputs/figures/semi_supervised_learning_curve.png)
 
 ### 6.5. Ma trận nhầm lẫn - Tự huấn luyện
 
-![Ma trận nhầm lẫn tự huấn luyện](../figures/pseudo_label_cm_self_training.png)
+![Ma trận nhầm lẫn tự huấn luyện](outputs/figures/pseudo_label_cm_self_training.png)
 
 **Nhận xét:**
 - Tự huấn luyện với 20% dữ liệu có nhãn đạt **Điểm F1 ~0,75**
@@ -346,19 +342,19 @@ Dự báo **tỷ lệ huỷ đặt phòng theo tháng** để hỗ trợ lập k
 
 ### 7.2. Dữ liệu chuỗi thời gian
 
-![Số lượng đặt phòng và huỷ phòng](../figures/ts_bookings_cancellations.png)
+![Số lượng đặt phòng và huỷ phòng](outputs/figures/ts_bookings_cancellations.png)
 
 Số lượng đặt phòng và huỷ phòng theo tháng từ 2015-2017.
 
 ### 7.3. Tỷ lệ huỷ theo thời gian
 
-![Tỷ lệ huỷ theo thời gian](../figures/ts_cancellation_rate.png)
+![Tỷ lệ huỷ theo thời gian](outputs/figures/ts_cancellation_rate.png)
 
 Tỷ lệ huỷ dao động từ ~25% đến ~45% theo từng tháng.
 
 ### 7.4. Phân tách xu hướng
 
-![Phân tách chuỗi thời gian](../figures/ts_decomposition.png)
+![Phân tách chuỗi thời gian](outputs/figures/ts_decomposition.png)
 
 Phân tách thành 3 thành phần:
 - **Xu hướng (Trend):** Xu hướng tăng nhẹ
@@ -367,19 +363,19 @@ Phân tách thành 3 thành phần:
 
 ### 7.5. Phân tích ACF & PACF
 
-![ACF và PACF](../figures/ts_acf_pacf.png)
+![ACF và PACF](outputs/figures/ts_acf_pacf.png)
 
 Phân tích hàm tự tương quan (ACF) và tự tương quan riêng phần (PACF) để xác định tham số ARIMA.
 
 ### 7.6. Chia tập huấn luyện và kiểm tra
 
-![Chia tập dữ liệu](../figures/ts_train_test_split.png)
+![Chia tập dữ liệu](outputs/figures/ts_train_test_split.png)
 
 Chia dữ liệu: 80% huấn luyện, 20% kiểm tra (theo thời gian).
 
 ### 7.7. So sánh các mô hình
 
-![So sánh mô hình chuỗi thời gian](../figures/ts_model_comparison.png)
+![So sánh mô hình chuỗi thời gian](outputs/figures/ts_model_comparison.png)
 
 | Mô hình | MAE | RMSE | MAPE |
 |---------|-----|------|------|
@@ -390,13 +386,13 @@ Chia dữ liệu: 80% huấn luyện, 20% kiểm tra (theo thời gian).
 
 ### 7.8. Kết quả dự báo
 
-![Tất cả các dự báo](../figures/ts_all_forecasts.png)
+![Tất cả các dự báo](outputs/figures/ts_all_forecasts.png)
 
 So sánh dự báo của tất cả các mô hình.
 
 ### 7.9. Dự báo tốt nhất
 
-![Dự báo tốt nhất](../figures/ts_best_forecast.png)
+![Dự báo tốt nhất](outputs/figures/ts_best_forecast.png)
 
 **🏆 Mô hình tốt nhất: Trung bình trượt 6 tháng (Moving Average - MA(6))**
 - MAPE: **10,4%** (sai số dưới 11%)
@@ -511,13 +507,3 @@ Nếu áp dụng mô hình với tỷ lệ huỷ trung bình 37%:
 - **📁 Kho mã nguồn:** [Nhom12_BaiTapLon_DataMining](https://github.com/nhom12/datamining-hotel-booking)
 - **🖥️ Ứng dụng Demo:** Ứng dụng Streamlit
 - **📊 Bộ dữ liệu:** [Kaggle - Hotel Booking Demand](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand)
-
----
-
-**🙏 Cảm ơn bạn đã đọc!**
-
-*Bài viết được thực hiện bởi Nhóm 12 - Lớp Khai phá Dữ liệu*
-
----
-
-**Từ khoá:** `#KhaiPháDữLiệu` `#HọcMáy` `#ĐặtPhòngKháchSạn` `#DựĐoánHuỷPhòng` `#Python` `#RừngNgẫuNhiên`
