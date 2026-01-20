@@ -1,20 +1,43 @@
-numpy>=1.24.0
-pandas>=2.0.0
-scipy>=1.10.0
-matplotlib>=3.7.0
-seaborn>=0.12.0
-plotly>=5.14.0
-scikit-learn>=1.2.0
-imbalanced-learn>=0.10.0
-xgboost>=1.7.0
-lightgbm>=3.3.0
-mlxtend>=0.22.0
-statsmodels>=0.14.0
-pyyaml>=6.0
-tqdm>=4.65.0
-joblib>=1.2.0
-jupyter>=1.0.0
-notebook>=7.0.0
-ipywidgets>=8.0.0
-papermill>=2.4.0
-streamlit>=1.24.0
+# ============================================================================
+# Hotel Booking Cancellation Prediction - Data Mining Project
+# Requirements for Python 3.10.19
+# ============================================================================
+
+# ===================== Core Data Processing =====================
+numpy>=1.24.0,<2.0.0           # Numerical computing
+pandas>=2.0.0,<3.0.0           # Data manipulation and analysis
+scipy>=1.10.0,<2.0.0           # Scientific computing
+
+# ===================== Visualization =====================
+matplotlib>=3.7.0,<4.0.0       # Basic plotting
+seaborn>=0.12.0,<1.0.0         # Statistical visualization
+plotly>=5.14.0,<6.0.0          # Interactive plots
+
+# ===================== Machine Learning =====================
+scikit-learn>=1.2.0,<2.0.0     # Core ML library
+imbalanced-learn>=0.10.0       # Handle imbalanced datasets (SMOTE, etc.)
+xgboost>=1.7.0,<3.0.0          # Gradient Boosting (XGBoost)
+lightgbm>=3.3.0,<5.0.0         # Light Gradient Boosting Machine
+
+# ===================== Data Mining =====================
+mlxtend>=0.22.0                # Association rules (Apriori, FP-Growth)
+
+# ===================== Time Series & Statistics =====================
+statsmodels>=0.14.0            # Statistical models (ARIMA, Exponential Smoothing)
+
+# ===================== Configuration & Utilities =====================
+pyyaml>=6.0                    # YAML configuration files
+tqdm>=4.65.0                   # Progress bars
+joblib>=1.2.0                  # Model serialization & parallel processing
+
+# ===================== Jupyter & Notebooks =====================
+jupyter>=1.0.0                 # Jupyter ecosystem
+notebook>=7.0.0                # Jupyter Notebook
+ipywidgets>=8.0.0              # Interactive widgets
+papermill>=2.4.0               # Parameterized notebook execution
+
+# ===================== Web App / Dashboard =====================
+streamlit>=1.24.0              # Interactive web applications
+
+# ===================== Optional: Deep Learning (if needed) =====================
+# torch>=2.0.0                 # PyTorch (optional, for GPU acceleration)
