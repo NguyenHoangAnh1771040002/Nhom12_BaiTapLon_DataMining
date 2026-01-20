@@ -41,7 +41,7 @@ Dự án xây dựng **hệ thống khai phá dữ liệu toàn diện** để d
 
 ---
 
-## 📊 Tập dữ liệu
+## 📊 Tập dữ liệu (Dataset)
 
 | Thuộc tính | Giá trị |
 |------------|---------|
@@ -63,7 +63,7 @@ Dự án xây dựng **hệ thống khai phá dữ liệu toàn diện** để d
 
 ## 📈 Kết quả
 
-### 🏆 Tóm tắt hiệu suất mô hình
+### 🏆 Tóm tắt hiệu suất mô hình (Model Performance Summary)
 
 | Giai đoạn | Mô hình tốt nhất | Chỉ số | Điểm |
 |-----------|------------------|--------|------|
@@ -73,7 +73,7 @@ Dự án xây dựng **hệ thống khai phá dữ liệu toàn diện** để d
 | **Học bán giám sát** | Supervised (10% có nhãn) | F1-Score | 0.6817 |
 | **Chuỗi thời gian** | Trung bình trượt MA(6) | MAPE | **10.39%** |
 
-### 📊 So sánh các mô hình học có giám sát
+### 📊 So sánh các mô hình học có giám sát (Supervised Models Comparison)
 
 | Mô hình | Độ chính xác | Precision | Recall | F1-Score | ROC-AUC |
 |---------|--------------|-----------|--------|----------|---------|
@@ -84,7 +84,7 @@ Dự án xây dựng **hệ thống khai phá dữ liệu toàn diện** để d
 | Cây quyết định (Decision Tree) | 0.791 | 0.717 | 0.691 | 0.704 | 0.775 |
 | Hồi quy Logistic | 0.789 | 0.691 | 0.738 | 0.714 | 0.860 |
 
-### 🔑 Top 5 đặc trưng quan trọng nhất
+### 🔑 Top 5 đặc trưng quan trọng nhất (Top 5 Important Features)
 
 | Hạng | Đặc trưng | Mức độ quan trọng |
 |------|-----------|-------------------|
@@ -164,13 +164,13 @@ Nhom12_BaiTapLon_DataMining/
 
 ## 🚀 Hướng dẫn cài đặt
 
-### 1. Sao chép kho mã nguồn
+### 1. Clone repository (Sao chép kho mã nguồn)
 ```bash
 git clone https://github.com/NguyenHoangAnh1771040002/Nhom12_BaiTapLon_DataMining.git
 cd Nhom12_BaiTapLon_DataMining
 ```
 
-### 2. Tạo môi trường ảo
+### 2. Tạo môi trường ảo (Virtual Environment)
 
 **Cách 1: Sử dụng Conda (Khuyến nghị)**
 ```bash
@@ -240,7 +240,7 @@ python scripts/run_papermill.py --notebook 01
 python scripts/run_papermill.py --all
 ```
 
-### 🔹 Kiểm tra tính tái lập
+### 🔹 Kiểm tra tính tái lập (Verify Reproducibility)
 
 ```bash
 python scripts/verify_reproducibility.py --full
@@ -275,7 +275,7 @@ streamlit run app/streamlit_app.py
 
 ---
 
-## 📂 Các file đầu ra
+## 📂 Các file đầu ra (Output Files)
 
 ### 📊 Hình ảnh (47 files)
 - `outputs/figures/target_distribution.png` - Phân phối biến mục tiêu
@@ -297,7 +297,7 @@ streamlit run app/streamlit_app.py
 
 ---
 
-## 💡 Thông tin kinh doanh
+## 💡 Thông tin kinh doanh (Business Insights)
 
 Dự án đã rút ra **9 insights quan trọng** cho khách sạn:
 
@@ -313,7 +313,7 @@ Dự án đã rút ra **9 insights quan trọng** cho khách sạn:
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## 🛠️ Công nghệ sử dụng (Tech Stack)
 
 | Danh mục | Công nghệ |
 |----------|-----------|
@@ -337,8 +337,27 @@ Dự án đã rút ra **9 insights quan trọng** cho khách sạn:
 | 3 | Trần Việt Vinh | 1771040030 |
 | 4 | Nguyễn Minh Phượng | 1677030156 |
 
-## 📝 Giấy phép
+---
+
+## 📚 Tài liệu tham khảo (References)
+
+- [Hotel Booking Demand Dataset - Kaggle](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand)
+- [Tài liệu scikit-learn](https://scikit-learn.org/stable/)
+- [Tài liệu XGBoost](https://xgboost.readthedocs.io/)
+- [Tài liệu Streamlit](https://docs.streamlit.io/)
+
+---
+
+## 📝 Giấy phép (License)
 
 Dự án này được thực hiện cho **mục đích học tập** tại môn Khai phá dữ liệu.
 
 ---
+
+<div align="center">
+
+**⭐ Nếu dự án hữu ích, hãy cho chúng tôi một star! ⭐**
+
+Made with ❤️ by **Nhóm 12**
+
+</div>
