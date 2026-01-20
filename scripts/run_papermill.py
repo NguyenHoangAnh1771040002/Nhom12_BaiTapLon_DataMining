@@ -89,7 +89,7 @@ def run_notebook(nb_id: str, output_dir: Path = None) -> dict:
     
     Args:
         nb_id: Notebook identifier (01, 02, etc.)
-        output_dir: Directory to save executed notebooks
+        output_dir: Directory to save executed notebooks (default: notebooks/)
     
     Returns:
         dict with execution status and timing
@@ -107,32 +107,31 @@ def run_notebook(nb_id: str, output_dir: Path = None) -> dict:
     if not input_path.exists():
         return {'status': 'error', 'error': f'Notebook not found: {input_path}'}
     
-    # Setup output directory
+    # Output to same directory as input (overwrite original)
     if output_dir is None:
-        output_dir = PROJECT_ROOT / 'outputs' / 'executed_notebooks'
+        output_dir = notebooks_dir
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # Create timestamped output filename
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_name = f"{nb_info['name'].replace('.ipynb', '')}_{timestamp}.ipynb"
-    output_path = output_dir / output_name
+    # Output file has same name as input (in-place execution)
+    output_path = output_dir / nb_info['name']
     
     print(f"\n🚀 Running: {nb_info['name']}")
     print(f"   Description: {nb_info['description']}")
-    print(f"   Input: {input_path}")
-    print(f"   Output: {output_path}")
+    print(f"   Path: {input_path}")
     
     start_time = time.time()
     
     try:
-        # Run notebook with papermill
+        # Run notebook with papermill (in-place execution)
+        # Use None for kernel_name to use the kernel specified in the notebook
         pm.execute_notebook(
             str(input_path),
             str(output_path),
             parameters=nb_info.get('parameters', {}),
-            kernel_name='python3',
+            kernel_name=None,  # Use kernel from notebook metadata
             progress_bar=True,
-            log_output=True
+            log_output=False,
+            cwd=str(notebooks_dir)  # Set working directory to notebooks/
         )
         
         elapsed = time.time() - start_time

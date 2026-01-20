@@ -45,7 +45,7 @@
     {
       "category": "Model Performance",
       "title": "Best Prediction Model",
-      "insight": "Mô hình Random Forest (Tuned) đạt hiệu suất cao nhất với F1-score = 0.8010.",
+      "insight": "Mô hình Random Forest (Tuned) đạt hiệu suất cao nhất với F1-score = 0.8005.",
       "recommendation": "Deploy mô hình này vào hệ thống để dự đoán và can thiệp sớm."
     },
     {

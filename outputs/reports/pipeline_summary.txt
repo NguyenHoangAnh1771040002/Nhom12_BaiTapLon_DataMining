@@ -1,0 +1,22 @@
+======================================================================
+PIPELINE EXECUTION SUMMARY
+======================================================================
+Project: Dự Đoán Huỷ Đặt Phòng Khách Sạn
+Random Seed: 42
+Timestamp: 2026-01-20 09:42:49
+
+PHASE RESULTS:
+--------------------------------------------------
+✅ EDA: SUCCESS (1.09s)
+❌ PREPROCESS: FAILED - cannot import name 'build_features' from 'src.features.builder' (C:\Coding\DataMining\Nhom12_BaiTapLon_DataMining\src\features\builder.py)
+✅ MINING: SUCCESS (0.49s)
+✅ MODELING: SUCCESS (12.40s)
+   Best Model: XGBoost (F1: 0.7713)
+❌ SEMI_SUPERVISED: FAILED - create_labeled_unlabeled_split() got an unexpected keyword argument 'labeled_percentage'
+✅ TIME_SERIES: SUCCESS (0.36s)
+   Best TS Model: MA(6) (MAPE: 10.39%)
+⏭️ REPORT: SKIPPED
+
+======================================================================
+PIPELINE COMPLETED
+======================================================================
